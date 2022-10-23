@@ -34,8 +34,10 @@ var azerbaijan = {name: 'Azerbaijan', flag:"https://www.countryflags.com/wp-cont
 var turkmenistan = {name: 'Turkmenistan', flag:"https://www.countryflags.com/wp-content/uploads/turkmenistan-flag-png-large.png"};
 var libya = {name: 'Libya', flag: "https://www.countryflags.com/wp-content/uploads/libya-flag-png-large.png"};
 var uzbekistan = {name: 'Uzbekistan', flag: "https://www.countryflags.com/wp-content/uploads/uzbekistan-flag-png-large.png"};
+var tajikistan = {name:'Tajikistan', flag:"https://www.countryflags.com/wp-content/uploads/tajikistan-flag-png-large.png"};
+var kazakhstan = {name:'Kazakhstan', flag:"https://www.countryflags.com/wp-content/uploads/kazakhstan-flag-png-large.png"};
 
-let flags = [azerbaijan, turkmenistan, libya, uzbekistan];
+let flags = [azerbaijan, turkmenistan, libya, uzbekistan, tajikistan,kazakhstan];
 
 function  joinGame() {
   document.getElementById("joinScreen").style.display = "none";
@@ -44,7 +46,6 @@ function  joinGame() {
 
 function shuffle(arra1) {
     var ctr = arra1.length, temp, index;
-
 // While there are elements in the array
     while (ctr > 0) {
 // Pick a random index
@@ -58,7 +59,7 @@ function shuffle(arra1) {
     } return arra1;
 };
 
-shuffle(flags);
+
 
 function generateAnswer(min, max) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min)
@@ -70,15 +71,16 @@ var answer = generateAnswer(0, 3);
 function flagDirection() {
  if (rand = Math.random() < 0.5)
  {
-  document.getElementById('flag').classList.add("upside");
+  document.getElementById('flag').classList.toggle("upside");
  }
 };
 
-flagDirection();
 
 function joinGameRegular() {
   document.getElementById("joinScreen").style.display = "none";
   document.getElementById("gameStart").style.display = "block";
+  shuffle(flags);
+  flagDirection();
 }
 
 var flag1 = flags[0];
@@ -90,6 +92,10 @@ var timer;
 var count = 3;
 
 function  startGameRegular(){
+  flag1 = flags[0];
+  flag2 = flags[1];
+  flag3 = flags[2];
+  flag4 = flags[3];
   document.getElementById('1-1').innerHTML =  flag1.name;  
   document.getElementById('2-1').innerHTML =  flag1.name; 
   document.getElementById('1-2').innerHTML =  flag2.name;  

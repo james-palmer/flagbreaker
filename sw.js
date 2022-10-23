@@ -8,7 +8,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-var cacheName = 'bagApp';
+var cacheName = 'flagbreaker';
 var filesToCache = [
   '/',
   '/index.html',
