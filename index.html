@@ -1,0 +1,215 @@
+<!doctype html>
+<!--Copyright James Palmer 2022 -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="James' attempt at bringing game nights to the 21st century">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flagbreaker</title>
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Bag Minge">
+  <meta name="theme-color" content="#303F9F">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Bag Minge">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303F9F">
+
+  <!-- Tile icon for Win8 -->
+  <meta name="msapplication-TileColor" content="#3372DF">
+  <meta name="msapplication-navbutton-color" content="#303F9F">
+
+  <!-- manifest and icons -->
+<link rel="manifest" href="public/manifest.json">
+<meta name="theme-color" content="#009688">
+<link rel="shortcut icon" href="https://cdn.glitch.com/9d50421d-0dee-4efc-8f0a-51d50515a54b%2Ffavicon-96x96.png?v=1571355103467">
+<link rel="apple-touch-icon" href="https://cdn.glitch.com/9d50421d-0dee-4efc-8f0a-51d50515a54b%2Fapple-icon-152x152.png?v=1571620647545">
+  
+<!-- Bootstrap-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/b8fb1d85ce.js" crossorigin="anonymous"></script> 
+
+<!-- Lottie animation library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.min.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="public/main.css">
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>      
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<!-- <script src="sw.js"></script> -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HVXRSEZ93K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HVXRSEZ93K');
+</script>
+
+</head>
+  
+<body>
+
+<!--preload sounds-->
+  <audio id="countdownClockMP3" src="https://cdn.glitch.com/9d50421d-0dee-4efc-8f0a-51d50515a54b%2FCountdown%20-%20Clock%20Only-%5BAudioTrimmer.com%5D.mp3?v=1571373441344" preload="auto"></audio>
+  <audio id="notificationSound" src="https://cdn.glitch.com/9d50421d-0dee-4efc-8f0a-51d50515a54b%2Ffilling-your-inbox.mp3?v=1571374260768" preload="auto"></audio>
+  <audio id="passSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2FComputer%20Error%20Alert-SoundBible.com-783113881.mp3?v=1573189144087" preload="auto"></audio>
+  <audio id="correctSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2Fsoundsilk-Correct-Answer-Soundeffect.mp3?v=1573189144712" preload="auto"></audio> 
+  
+<!--*****************************    
+Welcome splash screen 
+**************************-->
+  <section id="wordCloud" style="display:none">
+ <!-- <p id="wordCloudNames">    France Belgium Azerbaijan Turkmenistan Uganda Mozambique Ecuador Australia Papua New Guinea China</p> -->
+  </section>
+    
+  <section id="page-splash" style="display:none">
+    <div class="container">
+      <!-- <div class="row">
+        <h2 style="margin: 20% 0px">Find yourself locked in a tense debate, with neither side relenting, and no way to resolve the situation...?</h2> -->
+        <!-- <div class='flag'> -->
+        <!-- </div> -->
+        <!-- <img src="logo-no-background.png" width="100%"> -->
+      <!-- </div>  -->
+    <!-- <div class="row"> -->
+      <button id="join-button" class="splashButtons btn btn-primary flag vertical-center">
+        <!-- <i class="fa fa-flag"></i><a>Let's go</a> -->
+    </button>
+    </div>
+   </div>   
+<!-- <img  id="splashLogo" alt="logo" src="https://www.pngitem.com/pimgs/m/197-1970219_transparent-flag-png-flag-vector-icon-png-png.png"> -->
+  </section> 
+  
+  
+<div id="confetti"  style="z-index: 10000000; display: none; width:100vw; height: 100vh; position: fixed; top: 0; left:0;"></div>
+<div id="fireworks" style="display: none; width:100vw; height: 40vh; position: fixed; bottom: 10vh; left:0;"> </div>
+<div id="p1incorect" class="p1 upside incorrect"></div>
+<div id="p2incorect" class="p2 incorrect"></div>
+
+  
+<!--*****************************  Join game screen **************************-->
+  <section id="joinScreen" style="display:none">
+   <br>
+    <div class="container" style="padding: 20px;">
+     <!-- <a onclick="createBack()" class="btn backButton"><i class="fa fa-arrow-left"></i> Back</a> -->
+     <h4>
+       Welcome to Flagbreaker</h4>
+      <p>
+        Find yourself locked in a tense debate, with neither side relenting, and no way to resolve the situation...?</h2>
+    </p>
+    <p>
+        Flagbreaker is the ultimate decision making tool, where knowledge of obscure country flags is paramount.
+     </p>
+     <p>
+        Pick a Flagbreaker below to decide a winner:</p>
+        <div class="d-grid">
+            <button id="joinGameRegular" onclick="joinGameRegular()" class="splashButtons">Regular</button>
+            <button id="joinGameInverted" onclick="joinGameInverted()" class="splashButtons">Inverted</button>
+        </div>
+    </div>
+    </div>
+  </section>
+  
+  
+<!--*****************************  start screen **************************-->
+
+ <!-- pre-game start splash-->
+<section id="startScreen" style="display: none">
+  <section id="start-splash"> 
+    <div class="container">
+      
+       <div id="startShowCurrentRound"></div>
+      
+    <hr>
+   <h5>Are you ready <span id="startShowPlayer"></span>?</h5>
+    <hr>
+      
+    <button id="gameStartButton" onclick="startRound()" class="btn btn-primary aboveNavButton" style="background-color:#e57373; display:none" >Start your turn</button>
+  </div>
+  </section>
+</section>
+    
+  
+<!-- game page -->
+<section id="gameStart" class="no-padding" style="display:block">
+    <div class="row" >
+        <div class="col-6 top upside no-padding">
+            <button id="1-1" class="gameButtons" disabled></button>
+            <button id= "1-2" class="gameButtons" disabled></button>
+        </div>
+        <div class="col-6 top upside right no-padding">
+            <button id="1-3" class="gameButtons" disabled></button>
+            <button id="1-4" class="gameButtons" disabled></button>
+        </div>
+    </div>
+    <div class="flagholder">
+        <div id="instructions" style="display:block">  
+            <div class="row">
+                <p>A random flag will be shown here, first person to guess it wins. A wrong guess will temporarily lock you out</p>
+                <p>Position the phone between the two players and press the below button to start the timer!</p>
+                <button class="splashButtons" onclick=timer(); style="margin-top: 0px;">Start Flagbreaker</button>
+            </div>
+        </div>
+            <span id="countdown" style="display:none">3</span>
+            <img id="flag" class="gameImg upside"  style="display:none" src="">
+    </div>
+    <div class="row" >
+        <div class="col-6 bottom no-padding">
+            <button id="2-3" class="gameButtons" disabled></button>
+            <button id= "2-4" class="gameButtons" disabled></button>
+        </div>
+        <div class="col-6 bottom right no-padding">
+            <button id="2-1" class="gameButtons" disabled></button>
+            <button id="2-2" class="gameButtons" disabled></button>
+        </div>
+    </div>
+    <div id="endSplash" class="endSplash">
+       <div class="container">
+            You win.
+            <br>
+            Your decision is final.
+        </div> 
+    </div>
+    <div id="endSplashLose" class="endSplash lose">
+        <div class="container">
+             You lost.
+             <br>
+             Respect the Flagbreakers' decision.
+         </div> 
+     </div>
+    
+  </section>
+         
+<!-- End round splash page -->  
+<section id="roundEnd-splash" style="display:none">
+  <div class="container">
+  <div id="roundEndScore" style="padding: 50px 10px 20px 10px">
+    <div class="row" style="width:100%">
+       <h7 id="endRoundMessage" style="width:100%">-</h7>  
+    </div>
+    <div class="row">
+       <h7 id="endRoundScore" style="width:100%; padding-bottom: 10px;">-</h7>
+    </div> 
+    </div>
+  </div>  
+  
+<button id="roundEndHomeButton"  onclick="showSection(homeScreen, menuHome);showHomeScreenDetails();enableNavBarButtons();" class="submit btn btn-primary"><i class="fa fa-home" style="font-size: 4em"></i></button>
+</section>
+     
+</main>
+</body>
+<script src="public/main.js"></script>
+</html>
