@@ -1,8 +1,8 @@
 {
   "short_name": "Flagbreaker",
   "name": "Flagbreaker",
-  "theme_color": "#000",
-  "background_color": "#000",
+  "theme_color": "#000000",
+  "background_color": "#000000",
   "description": "The ultimate decision maker",
   "orientation": "any",
   "icons": [
