@@ -86,6 +86,9 @@ var flag2 = flags[1];
 var flag3 = flags[2];
 var flag4 = flags[3];
 
+var timer;
+var count = 3;
+
 function  startGameRegular(){
   document.getElementById('1-1').innerHTML =  flag1.name;  
   document.getElementById('2-1').innerHTML =  flag1.name; 
@@ -98,10 +101,9 @@ function  startGameRegular(){
   document.getElementById("flag").src=  flags[answer].flag;
   document.getElementById("flag").style.display = "block";
   document.getElementById("countdown").style.display = "none";
-  enablep1();
-  enablep2();
   console.log("Game started")
 };
+
 
 function startGameTimer() {
   document.getElementById("instructions").style.display = "none";
@@ -109,6 +111,9 @@ function startGameTimer() {
   if(count === 0) {
     clearInterval(timer);
     startGameRegular();
+    console.log("timer end")
+    enablep1();
+    enablep2();
     return;
   } else {
     $('#countdown').html(count);
@@ -116,9 +121,12 @@ function startGameTimer() {
   }
 }
 
-var count = 3;
-var timer = setInterval(function() { startGameTimer(count); }, 1000);
+// var timer = setInterval(function() { startGameTimer(count); }, 1000);
+document.getElementById('gameStart').onclick = function()  {
+  timer = setInterval(function() { startGameTimer(count);
+  console.log("startTimer"+count) }, 1000);
 
+};   
 
 document.getElementById('2-1').onclick = function()  {p2Guessed(0);};   
 document.getElementById('2-2').onclick = function()  {p2Guessed(1);};   
@@ -134,8 +142,8 @@ document.getElementById('1-4').onclick = function()  {p1Guessed(3);};
 function p2Guessed(guess) {
   if (guess === answer){
     confetti.style.display="block";
-    disablep1;
-    disablep2;
+    disablep1();
+    disablep2();
     document.getElementById('endSplash').classList.add("bottom");
     document.getElementById('endSplash').style.display="block";
     document.getElementById('endSplashLose').classList.add("upside");
@@ -157,8 +165,8 @@ function p2Guessed(guess) {
 function p1Guessed(guess) {
   if (guess === answer){
     confetti.style.display="block";
-    disablep1;
-    disablep2;
+    disablep1();
+    disablep2();
     document.getElementById('endSplash').classList.add("upside");
     document.getElementById('endSplash').classList.add("top");
     document.getElementById('endSplashLose').classList.add("bottom");
