@@ -72,11 +72,11 @@
 <!--*****************************    
 Welcome splash screen 
 **************************-->
-  <section id="wordCloud" style="display:none">
+  <section id="wordCloud" style="display:block">
  <!-- <p id="wordCloudNames">    France Belgium Azerbaijan Turkmenistan Uganda Mozambique Ecuador Australia Papua New Guinea China</p> -->
   </section>
     
-  <section id="page-splash" style="display:none">
+  <section id="page-splash" style="display:block">
     <div class="container">
       <!-- <div class="row">
         <h2 style="margin: 20% 0px">Find yourself locked in a tense debate, with neither side relenting, and no way to resolve the situation...?</h2> -->
@@ -144,7 +144,7 @@ Welcome splash screen
     
   
 <!-- game page -->
-<section id="gameStart" class="no-padding" style="display:block">
+<section id="gameStart" class="no-padding" style="display:none">
     <div class="row" >
         <div class="col-6 top upside no-padding">
             <button id="1-1" class="gameButtons" disabled></button>
@@ -156,11 +156,11 @@ Welcome splash screen
         </div>
     </div>
     <div class="flagholder">
-        <div id="instructions" style="display:block">  
+        <div id="instructions">  
             <div class="row">
                 <p>A random flag will be shown here, first person to guess it wins. A wrong guess will temporarily lock you out</p>
                 <p>Position the phone between the two players and press the below button to start the timer!</p>
-                <button class="splashButtons" onclick=timer(); style="margin-top: 0px;">Start Flagbreaker</button>
+                <button class="splashButtons" id="gameStart" style="margin-top: 0px;">Start Flagbreaker</button>
             </div>
         </div>
             <span id="countdown" style="display:none">3</span>
