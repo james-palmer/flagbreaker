@@ -1,4 +1,6 @@
 
+document.getElementById('endSplashButton').onclick = function()  {location.reload()};   
+
 function joinScreen(){
 
 document.getElementById("page-splash").style.display = "none";
@@ -147,7 +149,12 @@ document.getElementById('1-4').onclick = function()  {p1Guessed(3);};
 
 function p2Guessed(guess) {
   if (guess === answer){
-    confetti.style.display="block";
+    document.getElementById("confetti").style.display="block";
+    setTimeout(function(){ 
+      document.getElementById("confetti").style.display="none";
+      document.getElementById("endSplashButton").style.display="block";
+    }, 5000);
+    document.getElementById('correctSound').play();
     disablep1();
     disablep2();
     document.getElementById('endSplash').classList.add("bottom");
@@ -155,6 +162,8 @@ function p2Guessed(guess) {
     document.getElementById('endSplashLose').classList.add("upside");
     document.getElementById('endSplashLose').classList.add("top");
     document.getElementById('endSplashLose').style.display="block";
+    document.getElementById('roundEnd').style.display="block";
+    document.getElementById('gameStart').style.display="none";
     var animConfetti = bodymovin.loadAnimation({
         wrapper: confetti,
         animType: 'svg',
@@ -170,7 +179,12 @@ function p2Guessed(guess) {
 
 function p1Guessed(guess) {
   if (guess === answer){
-    confetti.style.display="block";
+    document.getElementById("confetti").style.display="block";
+    setTimeout(function(){ 
+      document.getElementById("confetti").style.display="none";
+      document.getElementById("endSplashButton").style.display="block";
+    }, 5000);
+    document.getElementById('correctSound').play();
     disablep1();
     disablep2();
     document.getElementById('endSplash').classList.add("upside");
@@ -179,6 +193,8 @@ function p1Guessed(guess) {
     document.getElementById('endSplashLose').style.display="block";
     document.getElementById('endSplash').style.display="block";
     document.getElementById('endSplashLose').style.display="block";
+    document.getElementById('roundEnd').style.display="block";
+     document.getElementById('gameStart').style.display="none";
     var animConfetti = bodymovin.loadAnimation({
         wrapper: confetti,
         animType: 'svg',

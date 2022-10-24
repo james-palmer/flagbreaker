@@ -94,11 +94,7 @@ Welcome splash screen
   </section> 
   
   
-<div id="confetti"  style="z-index: 10000000; display: none; width:100vw; height: 100vh; position: fixed; top: 0; left:0;"></div>
 <div id="fireworks" style="display: none; width:100vw; height: 40vh; position: fixed; bottom: 10vh; left:0;"> </div>
-<div id="p1incorect" class="p1 upside incorrect"></div>
-<div id="p2incorect" class="p2 incorrect"></div>
-
   
 <!--*****************************  Join game screen **************************-->
   <section id="joinScreen" style="display:none">
@@ -117,7 +113,7 @@ Welcome splash screen
         Pick a Flagbreaker below to decide a winner:</p>
         <div class="d-grid">
             <button id="joinGameRegular" onclick="joinGameRegular()" class="splashButtons">Regular</button>
-            <button id="joinGameInverted" onclick="joinGameInverted()" class="splashButtons">Inverted</button>
+            <button id="joinGameInverted" onclick="joinGameInverted()" disabled class="splashButtons">Inverted</button>
         </div>
     </div>
     </div>
@@ -176,37 +172,29 @@ Welcome splash screen
             <button id="2-2" class="gameButtons" disabled></button>
         </div>
     </div>
-    <div id="endSplash" class="endSplash">
-       <div class="container">
-            You win.
-            <br>
-            Your decision is final.
-        </div> 
-    </div>
-    <div id="endSplashLose" class="endSplash lose">
-        <div class="container">
-             You lost.
-             <br>
-             Respect the Flagbreakers' decision.
-         </div> 
-     </div>
-    
+ 
   </section>
          
 <!-- End round splash page -->  
-<section id="roundEnd-splash" style="display:none">
-  <div class="container">
-  <div id="roundEndScore" style="padding: 50px 10px 20px 10px">
-    <div class="row" style="width:100%">
-       <h7 id="endRoundMessage" style="width:100%">-</h7>  
-    </div>
-    <div class="row">
-       <h7 id="endRoundScore" style="width:100%; padding-bottom: 10px;">-</h7>
-    </div> 
-    </div>
-  </div>  
-  
-<button id="roundEndHomeButton"  onclick="showSection(homeScreen, menuHome);showHomeScreenDetails();enableNavBarButtons();" class="submit btn btn-primary"><i class="fa fa-home" style="font-size: 4em"></i></button>
+<section id="roundEnd" style="display:none">
+    <div id="confetti"  style="z-index: 100000; display: none; width:100vw; height: 100vh; position: fixed; top: 0; left:0;"></div>
+    <div id="endSplash" class="endSplash">
+        <div class="container">
+             You win.
+             <br>
+             Your decision is final.
+         </div> 
+     </div>
+     <div>
+         <button id="endSplashButton" style="display: none" class="endsplashButton splashButtons vertical-center">Play again</button>
+    <div>
+     <div id="endSplashLose" class="endSplash lose">
+         <div class="container">
+              You lost.
+              <br>
+              Respect the Flagbreakers' decision.
+          </div> 
+      </div>
 </section>
      
 </main>
