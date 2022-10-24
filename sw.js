@@ -7,6 +7,7 @@ if ('serviceWorker' in navigator) {
             console.log('Version', version);
         }).catch(function (error) {
             console.log('Service worker failed to register');
+            console.log('Version', version);
         });
     });
 }
@@ -14,8 +15,8 @@ if ('serviceWorker' in navigator) {
 var cacheName = 'flagbreaker';
 var filesToCache = [
   '/',
-  './flagbreaker//index.html',
-  './flagbreaker/public/main.css'
+  '/flagbreaker/index.html',
+  '/flagbreaker/public/main.css'
 ];
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
