@@ -2,7 +2,7 @@ const version = 1.1;
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js').then(function (registration) {
+        navigator.serviceWorker.register('/flagbreaker/sw.js').then(function (registration) {
             console.log('Service worker successfully registered on scope', registration.scope);
             console.log('Version', version);
         }).catch(function (error) {
