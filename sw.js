@@ -13,8 +13,8 @@ if ('serviceWorker' in navigator) {
 var cacheName = 'flagbreaker';
 var filesToCache = [
   '/',
-  '/index.html',
-  '/public/main.css'
+  '/flagbreaker//index.html',
+  '/flagbreaker/public/main.css'
 ];
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
