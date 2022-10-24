@@ -38,8 +38,14 @@ var libya = {name: 'Libya', flag: "https://www.countryflags.com/wp-content/uploa
 var uzbekistan = {name: 'Uzbekistan', flag: "https://www.countryflags.com/wp-content/uploads/uzbekistan-flag-png-large.png"};
 var tajikistan = {name:'Tajikistan', flag:"https://www.countryflags.com/wp-content/uploads/tajikistan-flag-png-large.png"};
 var kazakhstan = {name:'Kazakhstan', flag:"https://www.countryflags.com/wp-content/uploads/kazakhstan-flag-png-large.png"};
+var iran = { name:'Iran', flag:"https://www.countryflags.com/wp-content/uploads/iran-flag-png-large.png"};
+var iraq = {name:'Iraq', flag:"https://www.countryflags.com/wp-content/uploads/iraq-flag-png-large.png"};
+var belarus = {name: 'Belarus', flag:"https://www.countryflags.com/wp-content/uploads/flag-jpg-xl-16-scaled.jpg";}
+var papuang = {name: 'Papua New Guinea', flag:"https://www.countryflags.com/wp-content/uploads/papua-new-guinea-flag-png-large.png"};
+var eritrea = {name:'Eritrea', flag:"https://www.countryflags.com/wp-content/uploads/flag-jpg-large.jpg"};
+var kyrgyzstan = {name:'Kyrgyzstan', flag:"https://www.countryflags.com/wp-content/uploads/kyrgyzstan-flag-png-large.png"}
 
-let flags = [azerbaijan, turkmenistan, libya, uzbekistan, tajikistan,kazakhstan];
+let flags = [azerbaijan, turkmenistan, libya, uzbekistan, tajikistan,kazakhstan, iran, iraq, belarus, kyrgyzstan, eritrea, papuang];
 
 function  joinGame() {
   document.getElementById("joinScreen").style.display = "none";
