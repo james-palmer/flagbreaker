@@ -4,6 +4,7 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js').then(function (registration) {
             console.log('Service worker successfully registered on scope', registration.scope);
+            console.log('Version', version);
         }).catch(function (error) {
             console.log('Service worker failed to register');
         });
@@ -13,8 +14,8 @@ if ('serviceWorker' in navigator) {
 var cacheName = 'flagbreaker';
 var filesToCache = [
   '/',
-  '/flagbreaker//index.html',
-  '/flagbreaker/public/main.css'
+  './flagbreaker//index.html',
+  './flagbreaker/public/main.css'
 ];
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
