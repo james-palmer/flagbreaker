@@ -1,5 +1,5 @@
 html, body {
-    font-family: 'Roboto', 'Helvetica', sans-serif;
+    font-family: Ubuntu, "times new roman", times, roman, serif;
     background: black;
 }
 
@@ -108,6 +108,10 @@ a {
 .modal-header{
     background: teal;
     color: white;
+}
+
+button disabled {
+  background-color: grey;
 }
 
 .splashButtons {
