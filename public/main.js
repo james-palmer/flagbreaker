@@ -170,6 +170,7 @@ function p2Guessed(guess) {
     document.getElementById('correctSound').play();
     disablep1();
     disablep2();
+    debugger;
     document.getElementById('endSplash').classList.add("bottom");
     document.getElementById('endSplash').style.display="block";
     document.getElementById('endSplashLose').classList.add("upside");
