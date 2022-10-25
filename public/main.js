@@ -104,8 +104,8 @@ var flag2 = flags[1];
 var flag3 = flags[2];
 var flag4 = flags[3];
 
-var timer;
-var count = 3;
+// var timer;
+var count = 2;
 
 function  startGameRegular(){
   flag1 = flags[0];
@@ -126,26 +126,40 @@ function  startGameRegular(){
   console.log("Game started")
 };
 
-function startGameTimer() {
-  document.getElementById("instructions").style.display = "none";
-  document.getElementById("countdown").style.display = "block";
-  if(count === 0) {
-    clearInterval(timer);
-    startGameRegular();
-    console.log("timer end")
-    enablep1();
-    enablep2();
-    return;
-  } else {
-    $('#countdown').html(count);
-    count--;
-  }
-}
+// function startGameTimer() {
+//   if(count === 0) {
+//     clearInterval(timer);
+//     startGameRegular();
+//     console.log("timer end")
+//     enablep1();
+//     enablep2();
+//     return;
+//   } else {
+//     $('#countdown').html(count);
+//     count--;
+//   }
+// }
 
 // var timer = setInterval(function() { startGameTimer(count); }, 1000);
-document.getElementById('gameStart').onclick = function()  {
-  timer = setInterval(function() { startGameTimer(count);
-  console.log("startTimer"+count) }, 1000);
+function gameStart()  {
+  document.getElementById("instructions").style.display = "none";
+  document.getElementById("countdown").style.display = "block";
+  var timer  = setInterval(function() {
+    // startGameTimer(count);
+    if(count === 0) {
+      clearInterval(timer);
+      startGameRegular();
+      console.log("timer end")
+      enablep1();
+      enablep2();
+      console.log("startTimer"+count);
+      return;
+    } else {
+      $('#countdown').html(count);
+      count--;
+    }
+    console.log("startTimer"+count);
+  }, 1000);
 
 };   
 
@@ -158,38 +172,6 @@ document.getElementById('1-1').onclick = function()  {p1Guessed(0);};
 document.getElementById('1-2').onclick = function()  {p1Guessed(1);};   
 document.getElementById('1-3').onclick = function()  {p1Guessed(2);};   
 document.getElementById('1-4').onclick = function()  {p1Guessed(3);};   
-
-
-function p2Guessed(guess) {
-  if (guess === answer){
-    document.getElementById("confetti").style.display="block";
-    setTimeout(function(){ 
-      document.getElementById("confetti").style.display="none";
-      document.getElementById("endSplashButton").style.display="block";
-    }, 5000);
-    document.getElementById('correctSound').play();
-    disablep1();
-    disablep2();
-    debugger;
-    document.getElementById('endSplash').classList.add("bottom");
-    document.getElementById('endSplash').style.display="block";
-    document.getElementById('endSplashLose').classList.add("upside");
-    document.getElementById('endSplashLose').classList.add("top");
-    document.getElementById('endSplashLose').style.display="block";
-    document.getElementById('roundEnd').style.display="block";
-    document.getElementById('gameStart').style.display="none";
-    var animConfetti = bodymovin.loadAnimation({
-        wrapper: confetti,
-        animType: 'svg',
-        loop: true,
-        path: 'https://assets9.lottiefiles.com/temp/lf20_sTumYD.json'
-    });
-  }
-  else {
-    disablep2();
-    enablep1();
-  }
-}
 
 function p1Guessed(guess) {
   if (guess === answer){
@@ -220,6 +202,36 @@ function p1Guessed(guess) {
   {
     disablep1();
     enablep2();
+  }
+}
+
+function p2Guessed(guess) {
+  if (guess === answer){
+    document.getElementById("confetti").style.display="block";
+    setTimeout(function(){ 
+      document.getElementById("confetti").style.display="none";
+      document.getElementById("endSplashButton").style.display="block";
+    }, 5000);
+    document.getElementById('correctSound').play();
+    disablep1();
+    disablep2();
+    document.getElementById('endSplash').classList.add("bottom");
+    document.getElementById('endSplash').style.display="block";
+    document.getElementById('endSplashLose').classList.add("upside");
+    document.getElementById('endSplashLose').classList.add("top");
+    document.getElementById('endSplashLose').style.display="block";
+    document.getElementById('roundEnd').style.display="block";
+    document.getElementById('gameStart').style.display="none";
+    var animConfetti = bodymovin.loadAnimation({
+        wrapper: confetti,
+        animType: 'svg',
+        loop: true,
+        path: 'https://assets9.lottiefiles.com/temp/lf20_sTumYD.json'
+    });
+  }
+  else {
+    disablep2();
+    enablep1();
   }
 }
 
