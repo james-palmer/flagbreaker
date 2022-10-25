@@ -91,6 +91,14 @@ function joinGameRegular() {
   flagDirection();
 }
 
+function joinGameInverted() {
+  document.getElementById("joinScreen").style.display = "none";
+  document.getElementById("gameStart").style.display = "block";
+  shuffle(flags);
+  flagDirection();
+  document.getElementById('flag').classList.add("invert");
+}
+
 var flag1 = flags[0];
 var flag2 = flags[1];
 var flag3 = flags[2];
@@ -117,7 +125,6 @@ function  startGameRegular(){
   document.getElementById("countdown").style.display = "none";
   console.log("Game started")
 };
-
 
 function startGameTimer() {
   document.getElementById("instructions").style.display = "none";
