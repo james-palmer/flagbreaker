@@ -7,22 +7,22 @@
   "orientation": "any",
   "icons": [
     {
-      "src": "/flagbreaker/public/maskable_icon_x192.png",
+      "src": "maskable_icon_x192.png",
       "sizes": "192x192",
       "type": "image/png"
   },
   {
-      "src": "/flagbreaker/public/maskable_icon_x384.png",
+      "src": "maskable_icon_x384.png",
       "sizes": "384x384",
       "type": "image/png"
   },
   {
-      "src": "/flagbreaker/public/maskable_icon_x512.png.png",
+      "src": "maskable_icon_x512.png",
       "sizes": "512x512",
       "type": "image/png"
   }
   ],
   "display": "standalone",
-  "start_url": "/flagbreaker/?utm_source=homescreen",
+  "start_url": "../?utm_source=homescreen",
   "gcm_sender_id": "103953800507"
 }
