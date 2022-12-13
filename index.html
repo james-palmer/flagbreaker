@@ -24,7 +24,7 @@
   <!-- Tile icon for Win8 -->
   <meta name="msapplication-TileColor" content="#000000">
   <meta name="msapplication-navbutton-color" content="#000000">
-  <script data-main="scripts/main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/x.y.z/require.js"></script>
+  <!-- <script data-main="scripts/main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/x.y.z/require.js"></script> -->
 
   <!-- manifest and icons -->
 <link rel="manifest" href="public/manifest.json">
@@ -66,33 +66,20 @@
 <body>
 
 <!--preload sounds-->
-  <!-- <audio id="countdownClockMP3" src="https://cdn.glitch.com/9d50421d-0dee-4efc-8f0a-51d50515a54b%2FCountdown%20-%20Clock%20Only-%5BAudioTrimmer.com%5D.mp3?v=1571373441344" preload="auto"></audio>
-  <audio id="notificationSound" src="https://cdn.glitch.com/9d50421d-0dee-4efc-8f0a-51d50515a54b%2Ffilling-your-inbox.mp3?v=1571374260768" preload="auto"></audio>
-  <audio id="passSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2FComputer%20Error%20Alert-SoundBible.com-783113881.mp3?v=1573189144087" preload="auto"></audio> -->
-  <audio id="correctSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2Fsoundsilk-Correct-Answer-Soundeffect.mp3?v=1573189144712" preload="auto"></audio> 
+   <audio id="correctSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2Fsoundsilk-Correct-Answer-Soundeffect.mp3?v=1573189144712" preload="auto"></audio> 
   
 <!--*****************************    
 Welcome splash screen 
 **************************-->
   <section id="wordCloud" style="display:block">
- <!-- <p id="wordCloudNames">    France Belgium Azerbaijan Turkmenistan Uganda Mozambique Ecuador Australia Papua New Guinea China</p> -->
   </section>
     
   <section id="page-splash" style="display:block">
     <div class="container">
-      <!-- <div class="row">
-        <h2 style="margin: 20% 0px">Find yourself locked in a tense debate, with neither side relenting, and no way to resolve the situation...?</h2> -->
-        <!-- <div class='flag'> -->
-        <!-- </div> -->
-        <!-- <img src="logo-no-background.png" width="100%"> -->
-      <!-- </div>  -->
-    <!-- <div class="row"> -->
       <button id="join-button" class="splashButtons btn btn-primary flag vertical-center">
-        <!-- <i class="fa fa-flag"></i><a>Let's go</a> -->
     </button>
     </div>
    </div>   
-<!-- <img  id="splashLogo" alt="logo" src="https://www.pngitem.com/pimgs/m/197-1970219_transparent-flag-png-flag-vector-icon-png-png.png"> -->
   </section> 
   
   
@@ -112,7 +99,7 @@ Welcome splash screen
         Flagbreaker is the ultimate decision making tool, where knowledge of obscure country flags is paramount.
      </p>
      <p>
-        Pick a Flagbreaker below to decide a winner:</p>
+        Pick a Flagbreaker below to start a game and decide a winner:</p>
         <div class="d-grid">
             <button id="joinGameRegular" onclick="joinGameRegular()" class="splashButtons">Regular</button>
           </div>
@@ -172,7 +159,7 @@ Welcome splash screen
          </div> 
      </div>
      <div>
-         <button id="endSplashButton" style="display: none" class="endsplashButton splashButtons vertical-center">Play again</button>
+         <button id="endSplashButton" style="display: none" onclick=resetGame() class="endsplashButton splashButtons vertical-center">Play again</button>
     <div>
      <div id="endSplashLose" class="endSplash lose">
          <div class="container">
