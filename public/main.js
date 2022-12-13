@@ -507,6 +507,9 @@ function resetGame() {
   document.getElementById('roundEnd').style.display = "none";
   document.getElementById("flag").style.display = "none";
   document.getElementById("endSplashButton").style.display="none";
+  document.getElementById('endSplashLose').className = "endSplash lose";
+  document.getElementById('endSplash').className = "endSplash";
+  document.getElementById('flag').className = "gameImg";
   document.getElementById('1-1').innerHTML =  "";  
   document.getElementById('2-1').innerHTML =  ""; 
   document.getElementById('1-2').innerHTML =  "";  
@@ -516,7 +519,6 @@ function resetGame() {
   document.getElementById('1-4').innerHTML =  "";  
   document.getElementById('2-4').innerHTML =  "";  
   document.getElementById("countdown").innerHTML = "3";
-  document.getElementById('flag').className = "gameImg";
   joinScreen();
   disablep1();
   disablep2();
