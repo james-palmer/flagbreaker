@@ -442,6 +442,7 @@ function p1Guessed(guess) {
     document.getElementById('endSplash').style.display="block";
     document.getElementById('endSplashLose').style.display="block";
     document.getElementById('roundEnd').style.display="block";
+    document.getElementById('answer').innerHTML = flags[answer].name;
      document.getElementById('gameStart').style.display="none";
     var animConfetti = bodymovin.loadAnimation({
         wrapper: confetti,
@@ -473,6 +474,7 @@ function p2Guessed(guess) {
     document.getElementById('endSplashLose').classList.add("top");
     document.getElementById('endSplashLose').style.display="block";
     document.getElementById('roundEnd').style.display="block";
+    document.getElementById('answer').innerHTML = flags[answer].name;
     document.getElementById('gameStart').style.display="none";
     var animConfetti = bodymovin.loadAnimation({
         wrapper: confetti,
