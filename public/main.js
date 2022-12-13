@@ -374,7 +374,6 @@ function  startGameRegular(){
   document.getElementById("flag").src=  flags[answer].flag;
   document.getElementById("flag").style.display = "block";
   document.getElementById("countdown").style.display = "none";
-  console.log("Game started")
 };
 
 function gameStart()  {
@@ -385,16 +384,13 @@ function gameStart()  {
     if(count === 0) {
       clearInterval(timer);
       startGameRegular();
-      console.log("timer end")
       enablep1();
       enablep2();
-      console.log("startTimer"+count);
       return;
     } else {
       $('#countdown').html(count);
       count--;
     }
-    console.log("startTimer"+count);
   }, 1000);
 
 };   
@@ -525,5 +521,4 @@ function resetGame() {
   disablep1();
   disablep2();
   count = 2;
-  console.log("reset 1");
 };
