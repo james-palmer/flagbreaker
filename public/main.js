@@ -1,6 +1,4 @@
 
-document.getElementById('endSplashButton').onclick = function()  {window.location.reload()};   
-
 //
 var andorra = {name: 'Andorra', flag: 'flag_images/ad.png'};
 var unitedarabemirates = {name: 'United Arab Emirates', flag: 'flag_images/ae.png'};
@@ -327,7 +325,6 @@ function generateAnswer(min, max) { // min and max included
 var answer = generateAnswer(0, 3);
 
 //Flag upside down or not
-
 function flagDirection() {
  if (rand = Math.random() < 0.5)
  {
@@ -339,12 +336,14 @@ function flagDirection() {
 function joinGameRegular() {
   document.getElementById("joinScreen").style.display = "none";
   document.getElementById("gameStart").style.display = "block";
+  document.getElementById("instructions").style.display = "block";
   shuffle(flags);
   flagDirection();
 }
 
 function joinGameInverted() {
   document.getElementById("joinScreen").style.display = "none";
+  document.getElementById("instructions").style.display = "block";
   document.getElementById("gameStart").style.display = "block";
   shuffle(flags);
   flagDirection();
@@ -378,21 +377,6 @@ function  startGameRegular(){
   console.log("Game started")
 };
 
-// function startGameTimer() {
-//   if(count === 0) {
-//     clearInterval(timer);
-//     startGameRegular();
-//     console.log("timer end")
-//     enablep1();
-//     enablep2();
-//     return;
-//   } else {
-//     $('#countdown').html(count);
-//     count--;
-//   }
-// }
-
-// var timer = setInterval(function() { startGameTimer(count); }, 1000);
 function gameStart()  {
   document.getElementById("instructions").style.display = "none";
   document.getElementById("countdown").style.display = "block";
@@ -517,9 +501,29 @@ function enablep2() {
   document.getElementById("2-4").disabled = false;
 };
 
-// const testFolder = './flag_images/';
-// const fs = require('fs');
 
-// fs.readdirSync(testFolder).forEach(file => {
-//   console.log(file);
-// });
+
+//document.getElementById('endSplashButton').onclick = function()  {window.location.reload()};   
+// reset 
+// document.getElementById('endSplashButton').onclick = resetGame();
+
+function resetGame() {
+  document.getElementById('roundEnd').style.display = "none";
+  document.getElementById("flag").style.display = "none";
+  document.getElementById("endSplashButton").style.display="none";
+  document.getElementById('1-1').innerHTML =  "";  
+  document.getElementById('2-1').innerHTML =  ""; 
+  document.getElementById('1-2').innerHTML =  "";  
+  document.getElementById('2-2').innerHTML =  ""; 
+  document.getElementById('1-3').innerHTML =  "";  
+  document.getElementById('2-3').innerHTML =  ""; 
+  document.getElementById('1-4').innerHTML =  "";  
+  document.getElementById('2-4').innerHTML =  "";  
+  document.getElementById("countdown").innerHTML = "3";
+  document.getElementById('flag').className = "gameImg";
+  joinScreen();
+  disablep1();
+  disablep2();
+  count = 2;
+  console.log("reset 1");
+};
