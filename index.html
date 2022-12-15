@@ -49,7 +49,7 @@
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>      
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-<script src="sw.js"></script>
+<!-- <script src="sw.js"></script> -->
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HZ02TBGBTX"></script>
@@ -72,7 +72,7 @@
 <!--*****************************    
 Welcome splash screen 
 **************************-->    
-  <section id="page-splash" style="display:none">
+  <section id="page-splash" style="display:block">
     <div class="container">
       <button id="join-button" class="splashButtons btn btn-primary flag vertical-center">
     </button>
@@ -177,8 +177,8 @@ Welcome splash screen
   </section>
 
   <!-- party page -->
-<section id="gameStartParty" class="no-padding" style="display:block">
-  <div class="row text-center" id="pScore" style="display:block;"  >
+<section id="gameStartParty" class="no-padding" style="display:none">
+  <div class="row text-center" id="pScore" style="display:none;"  >
    <p><span id="pScoreCurrent">0</span>/10</p>
   </div>
   <div class="flagholder">
@@ -193,12 +193,12 @@ Welcome splash screen
   </div>
   <div class="row" >
       <div class="col-6 bottom no-padding">
-          <button id="p2-3" class="gameButtons" disabled></button>
-          <button id= "p2-4" class="gameButtons" disabled></button>
+          <button id="1p" class="gameButtons" disabled></button>
+          <button id="p2" class="gameButtons" disabled></button>
       </div>
       <div class="col-6 bottom right no-padding">
-          <button id="p2-1" class="gameButtons" disabled></button>
-          <button id="p2-2" class="gameButtons" disabled></button>
+          <button id="p3" class="gameButtons" disabled></button>
+          <button id="p4" class="gameButtons" disabled></button>
       </div>
   </div>
 

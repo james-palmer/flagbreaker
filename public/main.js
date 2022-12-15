@@ -474,10 +474,10 @@ function gameStartParty(){
   flag2 = flags[1];
   flag3 = flags[2];
   flag4 = flags[3];
-  document.getElementById('p2-1').innerHTML =  flag1.name; 
-  document.getElementById('p2-2').innerHTML =  flag2.name; 
-  document.getElementById('p2-3').innerHTML =  flag3.name; 
-  document.getElementById('p2-4').innerHTML =  flag4.name;  
+  document.getElementById('p1').innerHTML =  flag1.name; 
+  document.getElementById('p2').innerHTML =  flag2.name; 
+  document.getElementById('p3').innerHTML =  flag3.name; 
+  document.getElementById('p4').innerHTML =  flag4.name;  
   document.getElementById("pflag").src=  flags[answer].flag;
   document.getElementById("pflag").style.display = "block";
   document.getElementById("pScore").style.display = "block";
@@ -573,10 +573,10 @@ function p2Guessed(guess) {
 }
 
 partyRound = 1;
-document.getElementById('p2-1').onclick = function()  {partyGuessed(0);};   
-document.getElementById('p2-2').onclick = function()  {partyGuessed(1);};   
-document.getElementById('p2-3').onclick = function()  {partyGuessed(2);};   
-document.getElementById('p2-4').onclick = function()  {partyGuessed(3);};   
+document.getElementById('p1').onclick = function()  {partyGuessed(0);};   
+document.getElementById('p2').onclick = function()  {partyGuessed(1);};   
+document.getElementById('p3').onclick = function()  {partyGuessed(2);};   
+document.getElementById('p4').onclick = function()  {partyGuessed(3);};   
 
 function partyGuessed(guess) {
   partyRound++;
