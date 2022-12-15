@@ -304,7 +304,7 @@ document.getElementById("mode").style.display = "block";
       $('.flag').append(flagElement);
 }
 
-document.getElementById('join-button').onclick = function()  {joinScreen();};   
+document.getElementById('join-button').onclick = function()  {joinScreen();joinGameDuel();};   
 
 function joinScreen(){
   document.getElementById("page-splash").style.display = "none";
@@ -480,11 +480,6 @@ document.getElementById('1-4').onclick = function()  {p1Guessed(3);};
 function p1Guessed(guess) {
 
   if (guess === answer || difficulty === "usa"){
-    document.getElementById("confetti").style.display="block";
-    setTimeout(function(){ 
-      document.getElementById("confetti").style.display="none";
-      document.getElementById("endSplashButton").style.display="block";
-    }, 5000);
     disablep1();
     disablep2();
     document.getElementById('endSplash').classList.add("upside");
@@ -500,6 +495,11 @@ function p1Guessed(guess) {
       bruceEndSplash();
       document.getElementById('passSound').play();
     } else {
+      document.getElementById("confetti").style.display="block";
+      setTimeout(function(){ 
+        document.getElementById("confetti").style.display="none";
+        document.getElementById("endSplashButton").style.display="block";
+      }, 5000);
       document.getElementById('correctSound').play();
       var animConfetti = bodymovin.loadAnimation({
         wrapper: confetti,
@@ -519,11 +519,6 @@ function p1Guessed(guess) {
 
 function p2Guessed(guess) {
   if (guess === answer || difficulty === "usa"){
-    document.getElementById("confetti").style.display="block";
-    setTimeout(function(){ 
-      document.getElementById("confetti").style.display="none";
-      document.getElementById("endSplashButton").style.display="block";
-    }, 5000);
     disablep1();
     disablep2();
     document.getElementById('endSplash').classList.add("bottom");
@@ -538,6 +533,11 @@ function p2Guessed(guess) {
       bruceEndSplash();
       document.getElementById('passSound').play();
     } else {
+      document.getElementById("confetti").style.display="block";
+      setTimeout(function(){ 
+        document.getElementById("confetti").style.display="none";
+        document.getElementById("endSplashButton").style.display="block";
+      }, 5000);
       document.getElementById('correctSound').play();
       var animConfetti = bodymovin.loadAnimation({
         wrapper: confetti,
