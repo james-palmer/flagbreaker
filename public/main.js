@@ -284,14 +284,6 @@ hard33 = [turkey, china, isleofman, vietnam];
 hard34 = [mali, senegal, chad, romania];
 hard35 = [bulgaria, russianfederation, slovakia, slovenia];
 
-function joinScreen(){
-document.getElementById("page-splash").style.display = "none";
-document.getElementById("joinScreen").style.display = "block";
-document.getElementById("difficulty").style.display = "none";
-document.getElementById("fun").style.display = "none";
-document.getElementById("mode").style.display = "block";
-};
-
 /* Flag waving animation */
   var h = $('.flag').width();
   for(var i = 0; i < h; i++){
@@ -304,7 +296,7 @@ document.getElementById("mode").style.display = "block";
       $('.flag').append(flagElement);
 }
 
-document.getElementById('join-button').onclick = function()  {joinScreen();joinGameDuel();};   
+document.getElementById('join-button').onclick = function()  {joinScreen();};   
 
 function joinScreen(){
   document.getElementById("page-splash").style.display = "none";
@@ -321,7 +313,7 @@ let allFlags = [
   ];
 
 let easyFlags = [
-unitedkingdom, unitedstates,australia,france,germany,brazil,argentina,canada,mexico
+unitedkingdom, unitedstates,australia,france,germany,brazil,argentina,canada
 ];
 
 let hardFlags = [hard1, hard2,hard3,hard4,hard5,hard6,hard7,hard8,hard9,hard11, hard12,hard13,hard14,hard15,hard16,hard17,hard18,hard19,hard20,hard21,hard22,hard23,hard24,hard25,hard26,hard27,hard28,hard29,hard30,hard31,hard32,hard33,hard34,hard35];
@@ -334,10 +326,15 @@ let usaFlags = [
 
 function  joinGame() {
   document.getElementById("joinScreen").style.display = "none";
+  if (mode==="duel"){
   document.getElementById("gameStart").style.display = "block"; 
   document.getElementById("instructions").style.display = "block";
-  shuffle(flags);
   flagDirection();
+    } else if (mode==="party"){
+      document.getElementById("gameStartParty").style.display = "block"; 
+      document.getElementById("pinstructions").style.display = "block";
+    }
+  shuffle(flags);
   };
 
 function  joinGameDuel() {
@@ -468,6 +465,24 @@ function gameStart()  {
   }, 1000);
 };   
 
+function gameStartParty(){
+  document.getElementById("pinstructions").style.display = "none";
+  flag1 = flags[0];
+  flag2 = flags[1];
+  flag3 = flags[2];
+  flag4 = flags[3];
+  document.getElementById('p1').innerHTML =  flag1.name; 
+  document.getElementById('p2').innerHTML =  flag2.name; 
+  document.getElementById('p3').innerHTML =  flag3.name; 
+  document.getElementById('p4').innerHTML =  flag4.name;  
+  document.getElementById("pflag").src=  flags[answer].flag;
+  document.getElementById("pflag").style.display = "block";
+  document.getElementById("p1").disabled = false;
+  document.getElementById("p2").disabled = false;
+  document.getElementById("p3").disabled = false;
+  document.getElementById("p4").disabled = false;
+}
+
 document.getElementById('2-1').onclick = function()  {p2Guessed(0);};   
 document.getElementById('2-2').onclick = function()  {p2Guessed(1);};   
 document.getElementById('2-3').onclick = function()  {p2Guessed(2);};   
@@ -557,6 +572,68 @@ function p2Guessed(guess) {
   }
 }
 
+partyRound = 0;
+partyScore=0;
+document.getElementById('p1').onclick = function()  {partyGuessed(0);};   
+document.getElementById('p2').onclick = function()  {partyGuessed(1);};   
+document.getElementById('p3').onclick = function()  {partyGuessed(2);};   
+document.getElementById('p4').onclick = function()  {partyGuessed(3);};   
+
+function partyGuessed(guess) {
+  partyRound++;
+  document.getElementById("pScore").style.display="block";
+  if (partyRound === 10) {
+    partyRound=1;
+    showScores();
+    document.getElementById("gameStartParty").style.display="none";
+    document.getElementById("roundEndParty").style.display="block";
+  } else {
+  if (guess === answer || difficulty === "usa"){
+    partyScore++;
+    if (difficulty==="hard") {
+      flags=hardFlags[partyRound-1];
+    } 
+     if (difficulty === "bruce") {
+      document.getElementById('passSound').play();
+    } else {
+    }
+  }
+  else 
+  {
+    document.getElementById('passSound').play();
+  }
+  }
+  answer = generateAnswer(0, 3);
+  document.getElementById("pScoreCurrent").innerHTML = partyScore;
+  document.getElementById("pRoundCurrent").innerHTML = partyRound;
+  document.getElementById('correctSound').play();
+  shuffle(flags);
+  gameStartParty();
+}
+
+function showScores(){
+  document.getElementById("pwinText").innerHTML = partyScore;
+  if (partyScore === 0) {
+    document.getElementById("partyText").innerHTML = "Ouch";
+  } else 
+  if (partyScore < 4) {
+    document.getElementById("partyText").innerHTML = "Try harder";
+  } else 
+  if (partyScore < 7) {
+    document.getElementById("partyText").innerHTML = "Good effort";
+  } else 
+  if (partyScore < 9) {
+    document.getElementById("partyText").innerHTML = "Well done!";
+  } else 
+  if (partyScore === 9) {
+    document.getElementById("partyText").innerHTML = "Excellent";
+  } else 
+  if (partyScore === 10) {
+    document.getElementById("partyText").innerHTML = "Perfect";
+  }
+}
+
+
 function disablep1() {
   document.getElementById("1-1").disabled = true;
   document.getElementById("1-2").disabled = true;
@@ -595,12 +672,16 @@ function bruceEndSplash(){
 function resetGame() {
   document.getElementById("backButton").style.display = "none";
   document.getElementById('roundEnd').style.display = "none";
+  document.getElementById('roundEndParty').style.display = "none";
   document.getElementById("flag").style.display = "none";
+  document.getElementById("pflag").style.display = "none";
   document.getElementById("endSplashButton").style.display="none";
   document.getElementById("gameStart").style.display="none";
+  document.getElementById("gameStartParty").style.display="none";
   document.getElementById('endSplashLose').className = "endSplash lose";
   document.getElementById('endSplash').className = "endSplash";
   document.getElementById('flag').className = "gameImg";
+  document.getElementById('pflag').className = "gameImg";
   document.getElementById('1-1').innerHTML =  "";  
   document.getElementById('2-1').innerHTML =  ""; 
   document.getElementById('1-2').innerHTML =  "";  
@@ -609,13 +690,25 @@ function resetGame() {
   document.getElementById('2-3').innerHTML =  ""; 
   document.getElementById('1-4').innerHTML =  "";  
   document.getElementById('2-4').innerHTML =  "";  
+  document.getElementById('p1').innerHTML =  "";  
+  document.getElementById('p2').innerHTML =  ""; 
+  document.getElementById('p3').innerHTML =  "";  
+  document.getElementById('p4').innerHTML =  ""; 
+  document.getElementById("p1").disabled = true;
+  document.getElementById("p2").disabled = true;
+  document.getElementById("p3").disabled = true;
+  document.getElementById("p4").disabled = true; 
   document.getElementById("countdown").innerHTML = "3";
   joinScreen();
   disablep1();
   disablep2();
   count = 2;
   flags=allFlags;
+  partyRound=1;
   document.getElementById('winText').innerHTML =  "You win."; 
   document.getElementById('loseText').innerHTML =  "You lost.";
-  joinGameDuel();
+  partyScore=0;
+  partyRound=0;
+  document.getElementById("pScoreCurrent").innerHTML = 0;
+  document.getElementById("pRoundCurrent").innerHTML = 0;
 };

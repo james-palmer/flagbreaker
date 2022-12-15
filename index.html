@@ -49,7 +49,7 @@
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>      
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-<script src="sw.js"></script>
+<!-- <script src="sw.js"></script> -->
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HZ02TBGBTX"></script>
@@ -99,7 +99,7 @@ Welcome splash screen
           <button onclick="joinGameDuel()" class="splashButtons">Duel</button>
         </div>
         <div class="d-grid">
-          <button style="display: none;" onclick="joinGameParty()" class="splashButtons">Party</button>
+          <button style="display: block;" onclick="joinGameParty()" class="splashButtons">Party</button>
         </div>
     </div>
       <div id="difficulty" style="display: none";> 
@@ -175,6 +175,36 @@ Welcome splash screen
     </div>
  
   </section>
+
+  <!-- party page -->
+<section id="gameStartParty" class="no-padding" style="display:none">
+  <div class="row" id="pScore" style="display:none;">
+    <div>
+     <p class="showScore"><span id="pScoreCurrent">0</span> out of <span id="pRoundCurrent">0</span></p>
+    </div>
+  </div>
+  <div class="flagholder">
+      <div id="pinstructions">  
+          <div class="container">
+              <p>You will be shown a series of 10 flags.</p>
+              <p>Most flags guessed wins.</p>
+            </div>
+            <button class="splashButtons" id="pgameStart" onclick=gameStartParty() style="margin-top: 0px;">Start Flagbreaker</button>
+      </div>
+          <img id="pflag" class="gameImg"  style="display:none" src="">
+  </div>
+  <div class="row" >
+      <div class="col-6 bottom no-padding">
+          <button id="p1" class="gameButtons" disabled></button>
+          <button id="p2" class="gameButtons" disabled></button>
+      </div>
+      <div class="col-6 bottom right no-padding">
+          <button id="p3" class="gameButtons" disabled></button>
+          <button id="p4" class="gameButtons" disabled></button>
+      </div>
+  </div>
+
+</section>
          
 <!-- End round splash page -->  
 <section id="roundEnd" style="display:none">
@@ -182,7 +212,7 @@ Welcome splash screen
     <div id="endSplash" class="endSplash">
         <div class="container">
              <span id="winText">You win.</span>
-         </div> 
+        </div> 
      </div>
      <div>
          <button id="endSplashButton" style="display: none" onclick=resetGame() class="endsplashButton splashButtons vertical-center">Play again</button>
@@ -194,6 +224,18 @@ Welcome splash screen
               It was <span id="answer"></span>
           </div> 
       </div>
+</section>
+
+<!-- End round splash page -->  
+<section id="roundEndParty" style="display:none">
+      <div class="container">
+        <div class="row">
+          <p class="showScore">Congratulations, you scored <span id="pwinText"></span>/10
+            <br><br>
+        <span id="partyText">Well done</span></p>
+      </div>
+   </div>
+       <button id="endSplashButton" style="display: block" onclick=resetGame() class="endsplashButton splashButtons vertical-center">Play again</button>
 </section>
      
 </main>
