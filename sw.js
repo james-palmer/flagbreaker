@@ -1,4 +1,4 @@
-const version = 3.0;
+const version = 3.1;
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {

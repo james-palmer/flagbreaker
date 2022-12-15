@@ -582,12 +582,6 @@ document.getElementById('p4').onclick = function()  {partyGuessed(3);};
 function partyGuessed(guess) {
   partyRound++;
   document.getElementById("pScore").style.display="block";
-  if (partyRound === 10) {
-    partyRound=1;
-    showScores();
-    document.getElementById("gameStartParty").style.display="none";
-    document.getElementById("roundEndParty").style.display="block";
-  } else {
   if (guess === answer || difficulty === "usa"){
     partyScore++;
     if (difficulty==="hard") {
@@ -602,7 +596,12 @@ function partyGuessed(guess) {
   {
     document.getElementById('passSound').play();
   }
-  }
+  if (partyRound === 10) {
+    partyRound=1;
+    showScores();
+    document.getElementById("gameStartParty").style.display="none";
+    document.getElementById("roundEndParty").style.display="block";
+  } 
   answer = generateAnswer(0, 3);
   document.getElementById("pScoreCurrent").innerHTML = partyScore;
   document.getElementById("pRoundCurrent").innerHTML = partyRound;
