@@ -304,7 +304,7 @@ document.getElementById("mode").style.display = "block";
       $('.flag').append(flagElement);
 }
 
-document.getElementById('join-button').onclick = function()  {joinScreen();joinGameDuel();};   
+document.getElementById('join-button').onclick = function()  {joinScreen();};   
 
 function joinScreen(){
   document.getElementById("page-splash").style.display = "none";
@@ -321,7 +321,7 @@ let allFlags = [
   ];
 
 let easyFlags = [
-unitedkingdom, unitedstates,australia,france,germany,brazil,argentina,canada,mexico
+unitedkingdom, unitedstates,australia,france,germany,brazil,argentina,canada
 ];
 
 let hardFlags = [hard1, hard2,hard3,hard4,hard5,hard6,hard7,hard8,hard9,hard11, hard12,hard13,hard14,hard15,hard16,hard17,hard18,hard19,hard20,hard21,hard22,hard23,hard24,hard25,hard26,hard27,hard28,hard29,hard30,hard31,hard32,hard33,hard34,hard35];
@@ -468,6 +468,21 @@ function gameStart()  {
   }, 1000);
 };   
 
+function gameStartParty(){
+  document.getElementById("pinstructions").style.display = "none";
+  flag1 = flags[0];
+  flag2 = flags[1];
+  flag3 = flags[2];
+  flag4 = flags[3];
+  document.getElementById('p2-1').innerHTML =  flag1.name; 
+  document.getElementById('p2-2').innerHTML =  flag2.name; 
+  document.getElementById('p2-3').innerHTML =  flag3.name; 
+  document.getElementById('p2-4').innerHTML =  flag4.name;  
+  document.getElementById("pflag").src=  flags[answer].flag;
+  document.getElementById("pflag").style.display = "block";
+  document.getElementById("pScore").style.display = "block";
+}
+
 document.getElementById('2-1').onclick = function()  {p2Guessed(0);};   
 document.getElementById('2-2').onclick = function()  {p2Guessed(1);};   
 document.getElementById('2-3').onclick = function()  {p2Guessed(2);};   
@@ -557,6 +572,29 @@ function p2Guessed(guess) {
   }
 }
 
+partyRound = 1;
+document.getElementById('p2-1').onclick = function()  {partyGuessed(0);};   
+document.getElementById('p2-2').onclick = function()  {partyGuessed(1);};   
+document.getElementById('p2-3').onclick = function()  {partyGuessed(2);};   
+document.getElementById('p2-4').onclick = function()  {partyGuessed(3);};   
+
+function partyGuessed(guess) {
+  partyRound++;
+  if (guess === answer || difficulty === "usa"){
+    document.getElementById('correctSound').play();
+
+     if (difficulty === "bruce") {
+      document.getElementById('passSound').play();
+    } else {
+    }
+  }
+  else 
+  {
+    document.getElementById('passSound').play();
+  }
+}
+
+
 function disablep1() {
   document.getElementById("1-1").disabled = true;
   document.getElementById("1-2").disabled = true;
@@ -615,6 +653,7 @@ function resetGame() {
   disablep2();
   count = 2;
   flags=allFlags;
+  partyRound=1;
   document.getElementById('winText').innerHTML =  "You win."; 
   document.getElementById('loseText').innerHTML =  "You lost.";
   joinGameDuel();

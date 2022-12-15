@@ -584,3 +584,9 @@ height: 20vh;
 .lose {
   background-color: #25211F;
 }
+
+#pScore {
+  width: 100%;
+  padding:20%;
+  font-size: 2rem;
+}
