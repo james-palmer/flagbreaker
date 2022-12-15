@@ -605,13 +605,15 @@ function partyGuessed(guess) {
   answer = generateAnswer(0, 3);
   document.getElementById("pScoreCurrent").innerHTML = partyScore;
   document.getElementById("pRoundCurrent").innerHTML = partyRound;
-  document.getElementById('correctSound').play();
   shuffle(flags);
   gameStartParty();
 }
 
 function showScores(){
   document.getElementById("pwinText").innerHTML = partyScore;
+  if (difficulty==="bruce"){
+    document.getElementById("pBruce").innerHTML = "It doesn't matter what you scored, Bruce beat you.";
+  }
   if (partyScore === 0) {
     document.getElementById("partyText").innerHTML = "Ouch";
   } else 
@@ -710,4 +712,6 @@ function resetGame() {
   partyRound=0;
   document.getElementById("pScoreCurrent").innerHTML = 0;
   document.getElementById("pRoundCurrent").innerHTML = 0;
+  document.getElementById("pBruce").innerHTML = "";
+
 };

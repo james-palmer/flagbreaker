@@ -595,10 +595,20 @@ height: 20vh;
 .showScore{
   background-color: rgba( 0,0,0, 0.5);
   color:white;
-  font-size: 8rem;
   text-align: center;
   width: 100%;
   padding:20%;
   font-size: 2rem;
   position: fixed;
+}
+
+.showBruce{
+
+  color:white;
+  text-align: center;
+  width: 100%;
+  padding:10%;
+  font-size: 1.6rem;
+  position: fixed;
+  bottom:10%;
 }
