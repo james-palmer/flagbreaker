@@ -66,14 +66,12 @@
 <body>
 
 <!--preload sounds-->
-   <audio id="correctSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2Fsoundsilk-Correct-Answer-Soundeffect.mp3?v=1573189144712" preload="auto"></audio> 
+<audio id="passSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2FComputer%20Error%20Alert-SoundBible.com-783113881.mp3?v=1573189144087" preload="auto"></audio>
+<audio id="correctSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2Fsoundsilk-Correct-Answer-Soundeffect.mp3?v=1573189144712" preload="auto"></audio> 
   
 <!--*****************************    
 Welcome splash screen 
-**************************-->
-  <section id="wordCloud" style="display:block">
-  </section>
-    
+**************************-->    
   <section id="page-splash" style="display:block">
     <div class="container">
       <button id="join-button" class="splashButtons btn btn-primary flag vertical-center">
@@ -81,7 +79,6 @@ Welcome splash screen
     </div>
    </div>   
   </section> 
-  
   
 <div id="fireworks" style="display: none; width:100vw; height: 40vh; position: fixed; bottom: 10vh; left:0;"> </div>
   
@@ -92,19 +89,47 @@ Welcome splash screen
      <!-- <a onclick="createBack()" class="btn backButton"><i class="fa fa-arrow-left"></i> Back</a> -->
      <h4>
        Welcome to Flagbreaker</h4>
-      <p>
-        Find yourself locked in a tense debate, with neither side relenting, and no way to resolve the situation...?</h2>
-    </p>
     <p>
         Flagbreaker is the ultimate decision making tool, where knowledge of obscure country flags is paramount.
      </p>
-     <p>
-        Pick a Flagbreaker below to start a game and decide a winner:</p>
+     <div id="mode"> 
+      <p>
+      Pick a Flagbreaker mode:</p>
         <div class="d-grid">
-            <button id="joinGameRegular" onclick="joinGameRegular()" class="splashButtons">Regular</button>
+          <button onclick="joinGameDuel()" class="splashButtons">Duel</button>
+        </div>
+        <div class="d-grid">
+          <button style="display: none;" onclick="joinGameParty()" class="splashButtons">Party</button>
+        </div>
+    </div>
+      <div id="difficulty" style="display: none";> 
+        <p>
+        Pick a difficulty:</p>
+          <div class="d-grid">
+            <button onclick="joinGameEasy()" class="splashButtons">Easy</button>
           </div>
           <div class="d-grid">
-            <button id="joinGameInverted" onclick="joinGameInverted()" class="splashButtons">Inverted</button>
+            <button  onclick="joinGameNormal()" class="splashButtons">Normal</button>
+          </div>
+          <div class="d-grid">
+            <button  onclick="joinGameHard()" class="splashButtons">Hard</button>
+          </div>
+          <div class="d-grid">
+            <button  onclick="joinGameFun()" class="splashButtons">Fun</button>
+          </div>
+      </div>
+ 
+    <div id="fun" style="display: none;"> 
+      <p>
+      Pick between one of the fun modes:</p>
+        <div class="d-grid">
+          <button  onclick="joinGameCryptic()" class="splashButtons">Cryptic</button>
+        </div>
+        <div class="d-grid">
+          <button  onclick="joinGameUSA()" class="splashButtons">USA</button>
+        </div>
+        <div class="d-grid">
+          <button onclick="joinGameBruce()" class="splashButtons">Bruce</button>
         </div>
     </div>
     </div>
@@ -155,7 +180,7 @@ Welcome splash screen
     <div id="confetti"  style="z-index: 100000; display: none; width:100vw; height: 100vh; position: fixed; top: 0; left:0;"></div>
     <div id="endSplash" class="endSplash">
         <div class="container">
-             You win.
+             <span id="winText">You win.</span>
          </div> 
      </div>
      <div>
@@ -163,7 +188,7 @@ Welcome splash screen
     <div>
      <div id="endSplashLose" class="endSplash lose">
          <div class="container">
-              You lost.
+            <span id="loseText">You lost.</span>
               <br>
               It was <span id="answer"></span>
           </div> 

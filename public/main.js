@@ -245,14 +245,16 @@ var mayotte = {name: 'Mayotte', flag: 'flag_images/yt.png'};
 var southafrica = {name: 'South Africa', flag: 'flag_images/za.png'};
 var zambia = {name: 'Zambia', flag: 'flag_images/zm.png'};
 var zimbabwe = {name: 'Zimbabwe', flag: 'flag_images/zw.png'};
-
+var mode;
+var difficulty;
 
 function joinScreen(){
-
 document.getElementById("page-splash").style.display = "none";
 document.getElementById("wordCloud").style.display = "none";
 document.getElementById("joinScreen").style.display = "block";
-
+document.getElementById("difficulty").style.display = "none";
+document.getElementById("fun").style.display = "none";
+document.getElementById("mode").style.display = "block";
 };
 
 /* Flag waving animation */
@@ -272,35 +274,91 @@ document.getElementById('join-button').onclick = function()  {joinScreen();};
 function joinScreen(){
 
   document.getElementById("page-splash").style.display = "none";
-  document.getElementById("wordCloud").style.display = "none";
   document.getElementById("joinScreen").style.display = "block";
-  // document.getElementById("header").style.display = "block";  
+  document.getElementById('mode').style.display = "block";
+  document.getElementById('difficulty').style.display = "none";
+  document.getElementById('fun').style.display = "none";
 };
 
- 
-// var azerbaijan = {name: 'Azerbaijan', flag:"https://www.countryflags.com/wp-content/uploads/flag-jpg-xl-11-2048x1024.jpg"};
-// var turkmenistan = {name: 'Turkmenistan', flag:"https://www.countryflags.com/wp-content/uploads/turkmenistan-flag-png-large.png"};
-// var libya = {name: 'Libya', flag: "https://www.countryflags.com/wp-content/uploads/libya-flag-png-large.png"};
-// var uzbekistan = {name: 'Uzbekistan', flag: "https://www.countryflags.com/wp-content/uploads/uzbekistan-flag-png-large.png"};
-// var tajikistan = {name:'Tajikistan', flag:"https://www.countryflags.com/wp-content/uploads/tajikistan-flag-png-large.png"};
-// var kazakhstan = {name:'Kazakhstan', flag:"https://www.countryflags.com/wp-content/uploads/kazakhstan-flag-png-large.png"};
-// var iran = { name:'Iran', flag:"https://www.countryflags.com/wp-content/uploads/iran-flag-png-large.png"};
-// var iraq = {name:'Iraq', flag:"https://www.countryflags.com/wp-content/uploads/iraq-flag-png-large.png"};
-// var belarus = {name: 'Belarus', flag:"https://www.countryflags.com/wp-content/uploads/flag-jpg-xl-16-scaled.jpg"};
-// var papuang = {name: 'Papua New Guinea', flag:"https://www.countryflags.com/wp-content/uploads/papua-new-guinea-flag-png-large.png"};
-// var eritrea = {name:'Eritrea', flag:"https://www.countryflags.com/wp-content/uploads/flag-jpg-large.jpg"};
-// var kyrgyzstan = {name:'Kyrgyzstan', flag:"https://www.countryflags.com/wp-content/uploads/kyrgyzstan-flag-png-large.png"}
+let flags = [];
 
-// let flags = [azerbaijan, turkmenistan, libya, uzbekistan, tajikistan,kazakhstan, iran, iraq, belarus, kyrgyzstan, eritrea, papuang];
+let allFlags = [
+  zimbabwe, zambia, southafrica, mayotte, yemen, kosovo, samoa, wallisandfutunaislands, vanuatu, vietnam, virginislands, venezuela, saintvincentandthegrenadines, uzbekistan, uruguay, unitedstates, uganda, ukraine, tanzania, taiwan, tuvalu, trinidadandtobago, turkey, tonga, tunisia, turkmenistan, timorleste, tokelau, tajikistan, thailand, togo, chad, swaziland, syrianarabrepublic, elsalvador, saotomeandprincipe, southsudan, suriname, somalia, senegal, sanmarino, sierraleone, slovakia, svalbardandjanmayenislands, slovenia, singapore, sweden, sudan, seychelles, solomonislands, saudiarabia, rwanda, russianfederation, serbia, romania, réunion, qatar, paraguay, palau, portugal, palestine, puertorico, pitcairn, saintpierreandmiquelon, poland, pakistan, philippines, papuanewguinea, frenchpolynesia, peru, panama, oman, newzealand, niue, nauru, nepal, norway, netherlands, nicaragua, nigeria, norfolkisland, niger, newcaledonia, namibia, mozambique, malaysia, mexico, malawi, maldives, mauritius, malta, montserrat, mauritania, martinique, northernmarianaislands, macao, mongolia, myanmar, mali, northmacedonia, marshallislands, madagascar, saintmartin, montenegro, moldova, monaco, morocco, libya, latvia, luxembourg, lithuania, lesotho, liberia, srilanka, liechtenstein, saintlucia, lebanon, laos, kazakhstan, caymanislands, kuwait, southkore, northkorea, saintkittsandnevis, comoros, kiribati, cambodia, kyrgyzstan, kenya, japan, jordan, jamaica, jersey, italy, iceland, iran, iraq, india, isleofman, israel, ireland, indonesia, hungary, haiti, croatia, honduras, hongkong, guyana, guineabissau, guam, guatemala, greece, equatorialguinea, guadeloupe, guinea, gambia, greenland, gibraltar, ghana, guernsey, frenchguiana, georgia, grenada, unitedkingdom, wales, scotland, northernireland, england, gabon, france, faroeislands, micronesia, falklandislands, fiji, finland, europe, ethiopia, spain, eritrea, westernsahara, egypt, estonia, ecuador, algeria, dominicanrepublic, dominica, denmark, djibouti, germany, czechrepublic, cyprus, christmasisland, curaca, capeverde, cuba, costarica, colombia, chin, cameroon, chile, cookislands, cotedivoire, switzerland, republicofthecongo, centralafricanrepublic, drc, cocosisland, canada, belize, belarus, botswana, bouvetisland, bhutan, bahamas, brazil, caribbeannetherlands, bolivia, brunei, bermuda, saintbarthélemy, benin, burundi, bahrain, bulgaria, burkinafaso, belgium, bangladesh, barbados, bosniaandherzegovina, azerbaijan, faroeislands, aruba, australia, austria, americansamoa, argentina, antarctica, angola, armenia, albania, anguilla, antiguaandbarbuda, afghanistan, unitedarabemirates, andorra 
+  ];
 
-let flags = [
-zimbabwe, zambia, southafrica, mayotte, yemen, kosovo, samoa, wallisandfutunaislands, vanuatu, vietnam, virginislands, venezuela, saintvincentandthegrenadines, uzbekistan, uruguay, unitedstates, uganda, ukraine, tanzania, taiwan, tuvalu, trinidadandtobago, turkey, tonga, tunisia, turkmenistan, timorleste, tokelau, tajikistan, thailand, togo, chad, swaziland, syrianarabrepublic, elsalvador, saotomeandprincipe, southsudan, suriname, somalia, senegal, sanmarino, sierraleone, slovakia, svalbardandjanmayenislands, slovenia, singapore, sweden, sudan, seychelles, solomonislands, saudiarabia, rwanda, russianfederation, serbia, romania, réunion, qatar, paraguay, palau, portugal, palestine, puertorico, pitcairn, saintpierreandmiquelon, poland, pakistan, philippines, papuanewguinea, frenchpolynesia, peru, panama, oman, newzealand, niue, nauru, nepal, norway, netherlands, nicaragua, nigeria, norfolkisland, niger, newcaledonia, namibia, mozambique, malaysia, mexico, malawi, maldives, mauritius, malta, montserrat, mauritania, martinique, northernmarianaislands, macao, mongolia, myanmar, mali, northmacedonia, marshallislands, madagascar, saintmartin, montenegro, moldova, monaco, morocco, libya, latvia, luxembourg, lithuania, lesotho, liberia, srilanka, liechtenstein, saintlucia, lebanon, laos, kazakhstan, caymanislands, kuwait, southkore, northkorea, saintkittsandnevis, comoros, kiribati, cambodia, kyrgyzstan, kenya, japan, jordan, jamaica, jersey, italy, iceland, iran, iraq, india, isleofman, israel, ireland, indonesia, hungary, haiti, croatia, honduras, hongkong, guyana, guineabissau, guam, guatemala, greece, equatorialguinea, guadeloupe, guinea, gambia, greenland, gibraltar, ghana, guernsey, frenchguiana, georgia, grenada, unitedkingdom, wales, scotland, northernireland, england, gabon, france, faroeislands, micronesia, falklandislands, fiji, finland, europe, ethiopia, spain, eritrea, westernsahara, egypt, estonia, ecuador, algeria, dominicanrepublic, dominica, denmark, djibouti, germany, czechrepublic, cyprus, christmasisland, curaca, capeverde, cuba, costarica, colombia, chin, cameroon, chile, cookislands, cotedivoire, switzerland, republicofthecongo, centralafricanrepublic, drc, cocosisland, canada, belize, belarus, botswana, bouvetisland, bhutan, bahamas, brazil, caribbeannetherlands, bolivia, brunei, bermuda, saintbarthélemy, benin, burundi, bahrain, bulgaria, burkinafaso, belgium, bangladesh, barbados, bosniaandherzegovina, azerbaijan, faroeislands, aruba, australia, austria, americansamoa, argentina, antarctica, angola, armenia, albania, anguilla, antiguaandbarbuda, afghanistan, unitedarabemirates, andorra 
+let easyFlags = [
+unitedkingdom, unitedstates,australia,france,germany,brazil,argentina,canada,mexico
+];
+
+let hardFlags = [
+tajikistan,turkmenistan,azerbaijan,kyrgyzstan
+];
+
+let usaFlags = [
+  unitedstates, unitedstates,unitedstates,unitedstates
 ];
 
 function  joinGame() {
   document.getElementById("joinScreen").style.display = "none";
   document.getElementById("gameStart").style.display = "block"; 
+  document.getElementById("instructions").style.display = "block";
+  shuffle(flags);
+  flagDirection();
   };
+
+function  joinGameDuel() {
+  document.getElementById("mode").style.display = "none";
+  document.getElementById("difficulty").style.display = "block";
+  mode = "duel";
+};
+
+function  joinGameParty() {
+  document.getElementById("mode").style.display = "none";
+  document.getElementById("difficulty").style.display = "block";
+  mode = "party";
+};
+
+function joinGameEasy() {
+  flags = easyFlags;
+  difficulty = "easy";
+  joinGame();
+}
+
+function  joinGameNormal() {
+  flags = allFlags;
+  difficulty = "normal";
+  joinGame();
+};
+
+function joinGameCryptic(){
+  flags = allFlags;
+  difficulty = "cryptic";
+  document.getElementById('flag').classList.add("invert");
+  joinGame();
+}
+
+function joinGameHard(){
+  flags = hardFlags;
+  difficulty = "hard";
+  joinGame();
+}
+
+function joinGameUSA(){
+  flags = usaFlags;
+  difficulty = "usa";
+  joinGame();
+}
+
+function  joinGameBruce() {
+  flags = allFlags;
+  difficulty = "bruce";
+  joinGame();
+};
+
+function joinGameFun(){
+  document.getElementById("difficulty").style.display = "none";
+  document.getElementById("fun").style.display = "block";
+}
 
 function shuffle(arra1) {
     var ctr = arra1.length, temp, index;
@@ -332,23 +390,6 @@ function flagDirection() {
  }
 };
 
-
-function joinGameRegular() {
-  document.getElementById("joinScreen").style.display = "none";
-  document.getElementById("gameStart").style.display = "block";
-  document.getElementById("instructions").style.display = "block";
-  shuffle(flags);
-  flagDirection();
-}
-
-function joinGameInverted() {
-  document.getElementById("joinScreen").style.display = "none";
-  document.getElementById("instructions").style.display = "block";
-  document.getElementById("gameStart").style.display = "block";
-  shuffle(flags);
-  flagDirection();
-  document.getElementById('flag').classList.add("invert");
-}
 
 var flag1 = flags[0];
 var flag2 = flags[1];
@@ -406,7 +447,8 @@ document.getElementById('1-3').onclick = function()  {p1Guessed(2);};
 document.getElementById('1-4').onclick = function()  {p1Guessed(3);};   
 
 function p1Guessed(guess) {
-  if (guess === answer){
+
+  if (guess === answer || difficulty === "usa"){
     document.getElementById("confetti").style.display="block";
     setTimeout(function(){ 
       document.getElementById("confetti").style.display="none";
@@ -415,6 +457,9 @@ function p1Guessed(guess) {
     document.getElementById('correctSound').play();
     disablep1();
     disablep2();
+    if (difficulty === "bruce") {
+      bruceEndSplash();
+    } 
     document.getElementById('endSplash').classList.add("upside");
     document.getElementById('endSplash').classList.add("top");
     document.getElementById('endSplashLose').classList.add("bottom");
@@ -433,13 +478,14 @@ function p1Guessed(guess) {
   }
   else 
   {
+    document.getElementById('passSound').play();
     disablep1();
     enablep2();
   }
 }
 
 function p2Guessed(guess) {
-  if (guess === answer){
+  if (guess === answer || difficulty === "usa"){
     document.getElementById("confetti").style.display="block";
     setTimeout(function(){ 
       document.getElementById("confetti").style.display="none";
@@ -448,6 +494,9 @@ function p2Guessed(guess) {
     document.getElementById('correctSound').play();
     disablep1();
     disablep2();
+    if (difficulty === "bruce") {
+      bruceEndSplash();
+    } 
     document.getElementById('endSplash').classList.add("bottom");
     document.getElementById('endSplash').style.display="block";
     document.getElementById('endSplashLose').classList.add("upside");
@@ -464,6 +513,7 @@ function p2Guessed(guess) {
     });
   }
   else {
+    
     disablep2();
     enablep1();
   }
@@ -498,7 +548,10 @@ function enablep2() {
 };
 
 
-
+function bruceEndSplash(){
+  document.getElementById('winText').innerHTML =  "You lost. Bruce makes the decision"; 
+  document.getElementById('loseText').innerHTML =  "You lost. Bruce makes the decision";
+}
 //document.getElementById('endSplashButton').onclick = function()  {window.location.reload()};   
 // reset 
 // document.getElementById('endSplashButton').onclick = resetGame();
@@ -523,4 +576,7 @@ function resetGame() {
   disablep1();
   disablep2();
   count = 2;
+  flags=allFlags;
+  document.getElementById('winText').innerHTML =  "You win."; 
+  document.getElementById('loseText').innerHTML =  "You lost.";
 };

@@ -1,6 +1,7 @@
 html, body {
     font-family: 'Ubuntu';
     background: black;
+    overflow: hidden;
 }
 
 .screen {
@@ -16,7 +17,7 @@ body
 
 
 a {
-    color:  #B51E6D;
+    color: teal;
 }
 
 
@@ -124,7 +125,7 @@ button disabled {
 .splashButtons {
   position: relative;
   width: 80%;
-  height: 15vh;
+  height: 12vh;
   color: white; 
   padding: 20px;
   left:10%;
