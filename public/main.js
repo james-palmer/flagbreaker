@@ -485,12 +485,8 @@ function p1Guessed(guess) {
       document.getElementById("confetti").style.display="none";
       document.getElementById("endSplashButton").style.display="block";
     }, 5000);
-    document.getElementById('correctSound').play();
     disablep1();
     disablep2();
-    if (difficulty === "bruce") {
-      bruceEndSplash();
-    } 
     document.getElementById('endSplash').classList.add("upside");
     document.getElementById('endSplash').classList.add("top");
     document.getElementById('endSplashLose').classList.add("bottom");
@@ -500,12 +496,18 @@ function p1Guessed(guess) {
     document.getElementById('roundEnd').style.display="block";
     document.getElementById('answer').innerHTML = flags[answer].name;
      document.getElementById('gameStart').style.display="none";
-    var animConfetti = bodymovin.loadAnimation({
+     if (difficulty === "bruce") {
+      bruceEndSplash();
+      document.getElementById('passSound').play();
+    } else {
+      document.getElementById('correctSound').play();
+      var animConfetti = bodymovin.loadAnimation({
         wrapper: confetti,
         animType: 'svg',
         loop: true,
         path: 'https://assets9.lottiefiles.com/temp/lf20_sTumYD.json'
     });
+    }
   }
   else 
   {
@@ -522,12 +524,8 @@ function p2Guessed(guess) {
       document.getElementById("confetti").style.display="none";
       document.getElementById("endSplashButton").style.display="block";
     }, 5000);
-    document.getElementById('correctSound').play();
     disablep1();
     disablep2();
-    if (difficulty === "bruce") {
-      bruceEndSplash();
-    } 
     document.getElementById('endSplash').classList.add("bottom");
     document.getElementById('endSplash').style.display="block";
     document.getElementById('endSplashLose').classList.add("upside");
@@ -536,15 +534,21 @@ function p2Guessed(guess) {
     document.getElementById('roundEnd').style.display="block";
     document.getElementById('answer').innerHTML = flags[answer].name;
     document.getElementById('gameStart').style.display="none";
-    var animConfetti = bodymovin.loadAnimation({
+    if (difficulty === "bruce") {
+      bruceEndSplash();
+      document.getElementById('passSound').play();
+    } else {
+      document.getElementById('correctSound').play();
+      var animConfetti = bodymovin.loadAnimation({
         wrapper: confetti,
         animType: 'svg',
         loop: true,
         path: 'https://assets9.lottiefiles.com/temp/lf20_sTumYD.json'
     });
+    }
   }
   else {
-
+    document.getElementById('passSound').play();
     disablep2();
     enablep1();
   }
@@ -582,6 +586,7 @@ function enablep2() {
 function bruceEndSplash(){
   document.getElementById('winText').innerHTML =  "You lost. Bruce makes the decision"; 
   document.getElementById('loseText').innerHTML =  "You lost. Bruce makes the decision";
+  document.getElementById('endSplash').classList.add("lose");
 }
 
 function resetGame() {
