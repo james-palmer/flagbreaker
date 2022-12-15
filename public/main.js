@@ -494,6 +494,7 @@ function p1Guessed(guess) {
      if (difficulty === "bruce") {
       bruceEndSplash();
       document.getElementById('passSound').play();
+      document.getElementById("endSplashButton").style.display="block";
     } else {
       document.getElementById("confetti").style.display="block";
       setTimeout(function(){ 
@@ -532,6 +533,7 @@ function p2Guessed(guess) {
     if (difficulty === "bruce") {
       bruceEndSplash();
       document.getElementById('passSound').play();
+      document.getElementById("endSplashButton").style.display="block";
     } else {
       document.getElementById("confetti").style.display="block";
       setTimeout(function(){ 
@@ -612,4 +614,5 @@ function resetGame() {
   flags=allFlags;
   document.getElementById('winText').innerHTML =  "You win."; 
   document.getElementById('loseText').innerHTML =  "You lost.";
+  joinGameDuel();
 };
