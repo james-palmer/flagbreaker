@@ -393,6 +393,7 @@ function  joinGameBruce() {
 function joinGameFun(){
   document.getElementById("difficulty").style.display = "none";
   document.getElementById("fun").style.display = "block";
+  document.getElementById("backButton").style.display = "block";
 }
 
 function shuffle(arra1) {
@@ -592,9 +593,11 @@ function bruceEndSplash(){
 }
 
 function resetGame() {
+  document.getElementById("backButton").style.display = "none";
   document.getElementById('roundEnd').style.display = "none";
   document.getElementById("flag").style.display = "none";
   document.getElementById("endSplashButton").style.display="none";
+  document.getElementById("gameStart").style.display="none";
   document.getElementById('endSplashLose').className = "endSplash lose";
   document.getElementById('endSplash').className = "endSplash";
   document.getElementById('flag').className = "gameImg";

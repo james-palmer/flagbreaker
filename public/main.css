@@ -23,9 +23,14 @@ a {
 .backButton{
   position: fixed;
   color:white !important;
-  top: 40px;
+  top: 20px;
   right:0px;
-  
+}
+
+.gameBack{
+  color:white !important;
+  top: -30px;
+  position: relative;
 }
 
 /*waving flags*/
