@@ -250,7 +250,6 @@ var difficulty;
 
 function joinScreen(){
 document.getElementById("page-splash").style.display = "none";
-document.getElementById("wordCloud").style.display = "none";
 document.getElementById("joinScreen").style.display = "block";
 document.getElementById("difficulty").style.display = "none";
 document.getElementById("fun").style.display = "none";
