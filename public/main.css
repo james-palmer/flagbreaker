@@ -615,10 +615,10 @@ height: 20vh;
 
 .rightAnswer {
   border: 10px solid green;
-  background: darkgreen;
+  background: darkgreen !important;
 }
 
 .wrongAnswer {
   border: 10px solid red;
-  background: darkred;
+  background: darkred !important;
 }
