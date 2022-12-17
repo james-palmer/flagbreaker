@@ -581,7 +581,20 @@ document.getElementById('p4').onclick = function()  {partyGuessed(3);};
 
 function partyGuessed(guess) {
   partyRound++;
+  disableParty();
   document.getElementById("pScore").style.display="block";
+  if (answer===0) {
+    document.getElementById('p1').className = "gameButtons rightAnswer";
+  }
+  if (answer===1) {
+    document.getElementById('p2').className = "gameButtons rightAnswer";
+  }
+  if (answer===2) {
+    document.getElementById('p3').className = "gameButtons rightAnswer";
+  }
+  if (answer===3) {
+    document.getElementById('p4').className = "gameButtons rightAnswer";
+  }
   if (guess === answer || difficulty === "usa"){
     partyScore++;
     if (difficulty==="hard") {
@@ -594,20 +607,39 @@ function partyGuessed(guess) {
   }
   else 
   {
+    if (guess===0) {
+      document.getElementById('p1').className = "gameButtons wrongAnswer";
+    }
+    if (guess===1) {
+      document.getElementById('p2').className = "gameButtons wrongAnswer";
+    }
+    if (guess===2) {
+      document.getElementById('p3').className = "gameButtons wrongAnswer";
+    }
+    if (guess===3) {
+      document.getElementById('p4').className = "gameButtons wrongAnswer";
+    }
     document.getElementById('passSound').play();
   }
+  answer = generateAnswer(0, 3);
+  document.getElementById("pScoreCurrent").innerHTML = partyScore;
+  document.getElementById("pRoundCurrent").innerHTML = partyRound;
+  shuffle(flags);
+  setTimeout(function(){ 
   if (partyRound === 10) {
     partyRound=1;
     showScores();
     document.getElementById("gameStartParty").style.display="none";
     document.getElementById("roundEndParty").style.display="block";
   } 
-  answer = generateAnswer(0, 3);
-  document.getElementById("pScoreCurrent").innerHTML = partyScore;
-  document.getElementById("pRoundCurrent").innerHTML = partyRound;
-  shuffle(flags);
   gameStartParty();
-}
+  enableParty();
+  document.getElementById('p1').className = "gameButtons";
+  document.getElementById('p2').className = "gameButtons";
+  document.getElementById('p3').className = "gameButtons";
+  document.getElementById('p4').className = "gameButtons";
+  }, 3000); 
+};
 
 function showScores(){
   document.getElementById("pwinText").innerHTML = partyScore;
@@ -663,6 +695,19 @@ function enablep2() {
   document.getElementById("2-4").disabled = false;
 };
 
+function disableParty() {
+  document.getElementById("p1").disabled = true;
+  document.getElementById("p2").disabled = true;
+  document.getElementById("p3").disabled = true;
+  document.getElementById("p4").disabled = true;
+};
+
+function enableParty() {
+  document.getElementById("p1").disabled = false;
+  document.getElementById("p2").disabled = false;
+  document.getElementById("p3").disabled = false;
+  document.getElementById("p4").disabled = false;
+};
 
 function bruceEndSplash(){
   document.getElementById('winText').innerHTML =  "You lost. Bruce makes the decision"; 

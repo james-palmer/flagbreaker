@@ -612,3 +612,13 @@ height: 20vh;
   position: fixed;
   bottom:10%;
 }
+
+.rightAnswer {
+  border: 10px solid green;
+  background: darkgreen;
+}
+
+.wrongAnswer {
+  border: 10px solid red;
+  background: darkred;
+}
