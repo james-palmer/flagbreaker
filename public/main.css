@@ -129,6 +129,17 @@ a {
     color: white;
 }
 
+.wrongAnswer :disabled {
+  border: 10px solid red;
+  background: darkred !important;
+}
+
+.rightAnswer :disabled {
+  border: 10px solid green;
+  background: darkgreen !important;
+}
+
+
 button disabled {
   background-color: grey;
 }
@@ -615,10 +626,11 @@ height: 20vh;
 
 .rightAnswer {
   border: 10px solid green;
-  background: darkgreen;
+  background: darkgreen !important;
 }
 
 .wrongAnswer {
   border: 10px solid red;
-  background: darkred;
+  background: darkred !important;
 }
+
