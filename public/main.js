@@ -595,15 +595,15 @@ function partyGuessed(guess) {
   if (answer===3) {
     document.getElementById('p4').className = "gameButtons rightAnswer";
   }
+  if (difficulty === "bruce") {
+    document.getElementById('passSound').play();
+  } else 
   if (guess === answer || difficulty === "usa"){
     partyScore++;
+    document.getElementById('correctSound').play();
     if (difficulty==="hard") {
       flags=hardFlags[partyRound-1];
     } 
-     if (difficulty === "bruce") {
-      document.getElementById('passSound').play();
-    } else {
-    }
   }
   else 
   {
