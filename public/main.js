@@ -631,6 +631,12 @@ function partyGuessed(guess) {
     }
     document.getElementById('passSound').play();
   }
+  if (difficulty==="usa"){
+    document.getElementById("p1").className = "gameButtons rightAnswer"; 
+    document.getElementById("p2").className = "gameButtons rightAnswer"; 
+    document.getElementById("p3").className = "gameButtons rightAnswer"; 
+    document.getElementById("p4").className = "gameButtons rightAnswer"; 
+  }
   answer = generateAnswer(0, 3);
   shuffle(flags);
   setTimeout(function(){ 
