@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="the ultimate decision maker">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Flagbreaker</title>
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
@@ -18,7 +18,7 @@
   <!-- Add to homescreen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Bag Minge">
+  <meta name="apple-mobile-web-app-title" content="Flagbreaker">
   <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
 
   <!-- Tile icon for Win8 -->
@@ -79,9 +79,7 @@ Welcome splash screen
     </div>
    </div>   
   </section> 
-  
-<div id="fireworks" style="display: none; width:100vw; height: 40vh; position: fixed; bottom: 10vh; left:0;"> </div>
-<a onclick="resetGame()" id="backButton" class="btn backButton" style="display: none;"><i class="fa fa-arrow-left"></i> Back</a>
+  <a onclick="resetGame()" id="backButton" class="btn backButton" style="display: none;"><i class="fa fa-arrow-left"></i> Back</a>
     
 <!--*****************************  Join game screen **************************-->
   <section id="joinScreen" style="display:none">
@@ -177,11 +175,22 @@ Welcome splash screen
   </section>
 
   <!-- party page -->
-<section id="gameStartParty" class="no-padding" style="display:none">
-  <div class="row" id="pScore" style="display:none;">
-    <div>
-     <p class="showScore"><span id="pScoreCurrent">0</span> out of <span id="pRoundCurrent">0</span></p>
-    </div>
+<section id="gameStartParty" style="display:none">
+  <div class="tickscrosses" id="pScore" style="display:none">
+        <div class="holder">
+          <div class="checkdiv "><div id="ps1" class="noanswer"></div></div>
+          <div class="checkdiv "><div id="ps2" class="noanswer"></div></div>
+          <div class="checkdiv "><div id="ps3" class="noanswer"></div></div>        
+          <div class="checkdiv "><div id="ps4" class="noanswer"></div></div>
+          <div class="checkdiv "><div id="ps5" class="noanswer"></div></div>
+        </div>
+        <div class="holder">
+          <div class="checkdiv "><div id="ps6" class="noanswer"></div></div>        
+          <div class="checkdiv "><div id="ps7" class="noanswer"></div></div>
+          <div class="checkdiv "><div id="ps8" class="noanswer"></div></div>
+          <div class="checkdiv "><div id="ps9" class="noanswer"></div></div>
+          <div class="checkdiv "><div id="ps10" class="noanswer"></div></div>
+        </div>
   </div>
   <div class="flagholder">
       <div id="pinstructions">  
@@ -228,6 +237,8 @@ Welcome splash screen
 
 <!-- End round splash page -->  
 <section id="roundEndParty" style="display:none">
+  <div id="fireworks" style="z-index: 100000; display: none; width:100vw; height: 70vh; position: fixed; bottom: 10vh; left:0;"> </div>
+
   <div class="container">
     <div class="row">
       <p id="pendScore" class="showScore">
@@ -236,7 +247,7 @@ Welcome splash screen
         <span id="partyText">Well done</span></p>
         </div>
       </div>
-       <button id="endSplashButton" style="display: block" onclick=resetGame() class="endsplashButton splashButtons vertical-center">Play again</button>
+       <button id="endSplashButtonParty" style="display: none" onclick=resetGame() class="endsplashButton splashButtons vertical-center">Play again</button>
        <p id="pBruce" class="showBruce"></p>
       </div>
 </section>
