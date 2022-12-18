@@ -622,3 +622,116 @@ height: 20vh;
   border: 10px solid red;
   background: darkred !important;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Numans);
+body {
+  font-family: 'Numans', sans-serif;
+}
+.holder {
+  position:relative;
+  display: flex;
+  margin: 5px;
+}
+.checkdiv {
+  position: relative;
+  padding: 4px 8px;
+  border-radius:40px;
+  margin-bottom:4px;
+  min-height:30px;
+  padding-left:40px;
+  display: flex;
+  align-items: center;
+}
+
+.noanswer {
+  appearance: none;
+  position: absolute;
+  left:5px;
+  background-color: grey;
+  width:30px;
+  height:30px;
+  border-radius:40px;
+  margin:0px;
+  outline: none; 
+  transition:background-color .5s;
+}
+
+.cross {
+  appearance: none;
+  position: absolute;
+  left:5px;
+  background-color: #F44336;
+  width:30px;
+  height:30px;
+  border-radius:40px;
+  margin:0px;
+  outline: none; 
+  transition:background-color .5s;
+}
+.cross:before {
+  content:'';
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) rotate(45deg);
+  background-color:#ffffff;
+  width:20px;
+  height:5px;
+  border-radius:40px;
+}
+
+.cross:after {
+  content:'';
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) rotate(-45deg);
+  background-color:#ffffff;
+  width:20px;
+  height:5px;
+  border-radius:40px;
+}
+.tick {
+   appearance: none;
+  position: absolute;
+  left:5px;
+  width:30px;
+  height:30px;
+  border-radius:40px;
+  margin:0px;
+  outline: none; 
+  transition:background-color .5s;
+  background-color:#4CAF50;
+}
+.tick:before {
+  content:'';
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) translate(-4px,3px) rotate(45deg);
+  background-color:#ffffff;
+  width:12px;
+  height:5px;
+  border-radius:40px;
+}
+
+.tick:after {
+  content:'';
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) translate(3px,2px) rotate(-45deg);
+  background-color:#ffffff;
+  width:16px;
+  height:5px;
+  border-radius:40px;
+}
+
+.tickscrosses{
+  position: fixed;
+  top:10%;
+  display: flex;
+  flex-wrap: wrap;
+  width:100%;
+  justify-content: center;
+}

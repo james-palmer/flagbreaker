@@ -341,12 +341,14 @@ function  joinGameDuel() {
   document.getElementById("mode").style.display = "none";
   document.getElementById("difficulty").style.display = "block";
   mode = "duel";
+  document.getElementById("backButton").style.display = "block";
 };
 
 function  joinGameParty() {
   document.getElementById("mode").style.display = "none";
   document.getElementById("difficulty").style.display = "block";
   mode = "party";
+  document.getElementById("backButton").style.display = "block";
 };
 
 function joinGameEasy() {
@@ -467,6 +469,8 @@ function gameStart()  {
 
 function gameStartParty(){
   document.getElementById("pinstructions").style.display = "none";
+  document.getElementById("pScore").style.display="flex";
+  document.getElementById("backButton").style.display = "none";
   flag1 = flags[0];
   flag2 = flags[1];
   flag3 = flags[2];
@@ -522,7 +526,7 @@ function p1Guessed(guess) {
         wrapper: confetti,
         animType: 'svg',
         loop: true,
-        path: 'https://assets9.lottiefiles.com/temp/lf20_sTumYD.json'
+        path: 'public/confetti.json'
     });
     }
   }
@@ -561,7 +565,7 @@ function p2Guessed(guess) {
         wrapper: confetti,
         animType: 'svg',
         loop: true,
-        path: 'https://assets9.lottiefiles.com/temp/lf20_sTumYD.json'
+        path: 'public/confetti.json'
     });
     }
   }
@@ -579,10 +583,13 @@ document.getElementById('p2').onclick = function()  {partyGuessed(1);};
 document.getElementById('p3').onclick = function()  {partyGuessed(2);};   
 document.getElementById('p4').onclick = function()  {partyGuessed(3);};   
 
+roundId = "ps" + partyRound
+
 function partyGuessed(guess) {
+  
   partyRound++;
+  roundId = "ps" + partyRound
   disableParty();
-  document.getElementById("pScore").style.display="block";
   if (answer===0) {
     document.getElementById('p1').className = "gameButtons rightAnswer";
   }
@@ -597,9 +604,11 @@ function partyGuessed(guess) {
   }
   if (difficulty === "bruce") {
     document.getElementById('passSound').play();
+    document.getElementById(roundId).className = "cross";
   } else 
   if (guess === answer || difficulty === "usa"){
     partyScore++;
+    document.getElementById(roundId).className = "tick";
     document.getElementById('correctSound').play();
     if (difficulty==="hard") {
       flags=hardFlags[partyRound-1];
@@ -607,6 +616,7 @@ function partyGuessed(guess) {
   }
   else 
   {
+    document.getElementById(roundId).className = "cross";
     if (guess===0) {
       document.getElementById('p1').className = "gameButtons wrongAnswer";
     }
@@ -622,8 +632,6 @@ function partyGuessed(guess) {
     document.getElementById('passSound').play();
   }
   answer = generateAnswer(0, 3);
-  document.getElementById("pScoreCurrent").innerHTML = partyScore;
-  document.getElementById("pRoundCurrent").innerHTML = partyRound;
   shuffle(flags);
   setTimeout(function(){ 
   if (partyRound === 10) {
@@ -631,6 +639,17 @@ function partyGuessed(guess) {
     showScores();
     document.getElementById("gameStartParty").style.display="none";
     document.getElementById("roundEndParty").style.display="block";
+    document.getElementById("fireworks").style.display="block";
+    setTimeout(function(){ 
+      document.getElementById("fireworks").style.display="none";
+      document.getElementById("endSplashButtonParty").style.display="block";
+    }, 5000);
+    var animFireworks = bodymovin.loadAnimation({
+      wrapper: fireworks,
+      animType: 'svg',
+      loop: true,
+      path: 'public/fireworks.json'
+    });
   } 
   gameStartParty();
   enableParty();
@@ -744,6 +763,17 @@ function resetGame() {
   document.getElementById("p2").disabled = true;
   document.getElementById("p3").disabled = true;
   document.getElementById("p4").disabled = true; 
+  document.getElementById("ps1").className = "noanswer";
+  document.getElementById("ps2").className = "noanswer";
+  document.getElementById("ps3").className = "noanswer";
+  document.getElementById("ps4").className = "noanswer";
+  document.getElementById("ps5").className = "noanswer";
+  document.getElementById("ps6").className = "noanswer";
+  document.getElementById("ps7").className = "noanswer";
+  document.getElementById("ps8").className = "noanswer";
+  document.getElementById("ps9").className = "noanswer";
+  document.getElementById("ps10").className = "noanswer";
+  document.getElementById("pScore").style.display="none";
   document.getElementById("countdown").innerHTML = "3";
   joinScreen();
   disablep1();
@@ -755,8 +785,5 @@ function resetGame() {
   document.getElementById('loseText').innerHTML =  "You lost.";
   partyScore=0;
   partyRound=0;
-  document.getElementById("pScoreCurrent").innerHTML = 0;
-  document.getElementById("pRoundCurrent").innerHTML = 0;
   document.getElementById("pBruce").innerHTML = "";
-
 };
