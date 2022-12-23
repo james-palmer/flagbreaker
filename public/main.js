@@ -648,6 +648,7 @@ function partyGuessed(guess) {
     document.getElementById("fireworks").style.display="block";
     setTimeout(function(){ 
       document.getElementById("fireworks").style.display="none";
+      showRokt();
       document.getElementById("endSplashButtonParty").style.display="block";
     }, 5000);
     var animFireworks = bodymovin.loadAnimation({
@@ -793,3 +794,36 @@ function resetGame() {
   partyRound=0;
   document.getElementById("pBruce").innerHTML = "";
 };
+
+const target = document.head || document.body;
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://apps-demo.rokt.com/wsdk/integrations/launcher.js";
+    script.importance = "high";
+    script.crossOrigin = "anonymous";
+    script.async = true;
+    script.id = "rokt-launcher";
+    target.appendChild(script);
+
+    async function showRokt() {
+      await new Promise((resolve) =>
+        window.Rokt
+          ? resolve()
+          : document
+              .getElementById("rokt-launcher")
+              .addEventListener("load", () => resolve())
+      );
+
+      const launcher = await window.Rokt.createLauncher({
+        accountId: "2920840145279427107",
+        sandbox: true,
+      });
+      await launcher.selectPlacements({
+         identifier: "staging",
+        "attributes":{
+        email: "j.smith@rokt.com",
+      }
+      });
+
+    }
+
