@@ -827,15 +827,3 @@ const target = document.head || document.body;
 
     }
 
-
-    async function afterPageElementsHaveRendered() {
-      const launcher = await launcherPromise;
-      const selection = await launcher.selectPlacements({
-        attributes: {
-          email: "j.smith@example.com",
-        },
-        identifier: "checkout.page",
-      });
-    }
-
-    afterPageElementsHaveRendered();

@@ -61,42 +61,10 @@
   gtag('config', 'G-HZ02TBGBTX');
 </script>
 
-<!-- Main Snippet -->
-<script type="module">
-  const target = document.head || document.body;
-  const script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = "https://wsdk.stage.rokt.com/integrations/launcher.js";
-  script.fetchpriority = "high";
-  script.crossOrigin = "anonymous";
-  script.async = true;
-  script.id = "rokt-launcher";
-  target.appendChild(script);
-  await new Promise(resolve => window.Rokt ? resolve() : (document.getElementById('rokt-launcher').onload = resolve));
-  const launcher = await window.Rokt.createLauncher({ 
-  accountId:'2759419923930286045',
-  sandbox: true,
-  });
-  await launcher.selectPlacements({
-  attributes: {
-
-    // Recommended
-    email: 'j.smith@rokt.com',
-
-  },
-  });
-</script>
-
-
 </head>
   
 <body>
-  <iframe
-  aria-hidden="true"
-  src="https://apps.rokt.com/wsdk/preload/index.html"
-  sandbox="allow-scripts allow-same-origin"
-  style="border: 0px; width: 100%; display: none;"
-></iframe>
+
 <!--preload sounds-->
 <audio id="passSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2FComputer%20Error%20Alert-SoundBible.com-783113881.mp3?v=1573189144087" preload="auto"></audio>
 <audio id="correctSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2Fsoundsilk-Correct-Answer-Soundeffect.mp3?v=1573189144712" preload="auto"></audio> 
