@@ -249,40 +249,34 @@ var mode;
 var difficulty;
 
 hard1 = [iraq, egypt, yemen, syrianarabrepublic];
-hard2 = [yemen, egypt, iraq, syrianarabrepublic];
-hard3 = [egypt, yemen, iraq, syrianarabrepublic];
-hard4 = [syrianarabrepublic, iraq, yemen, egypt];
+hard2 = [monaco, indonesia,poland,austria]
+hard3 = [vietnam, isleofman, china, kyrgyzstan];
+hard4 = [hungary, netherlands, luxembourg, paraguay];
 hard5 = [romania, chad, andorra, moldova];
-hard6 = [chad, romania, andorra, moldova];
-hard7 = [andorra, moldova, romania, chad];
+hard6 = [hongkong, tunisia, vietnam, isleofman];
+hard7 = [syrianarabrepublic, sudan, egypt,libya];
 hard8 = [nicaragua, honduras, elsalvador, sierraleone];
-hard9 = [saintmartin, france, mexico, italy];
-hard10 = [france, france, mexico, italy];
-hard11 = [vietnam, isleofman, china, kyrgyzstan];
-hard12 = [moldova, andorra, romania, chad];
-hard13 = [china, vietnam, isleofman, morocco];
-hard14 = [isleofman, vietnam, china, morocco];
-hard15 = [honduras, nicaragua, elsalvador, sierraleone];
-hard16 = [hungary, netherlands, yemen, egypt];
-hard17 = [hongkong, tunisia, vietnam, isleofman];
-hard18 = [netherlands, paraguay, hungary, croatia];
-hard19 = [italy, mexico, ireland, saintmartin];
-hard20 = [morocco, china, isleofman, vietnam];
-hard21 = [paraguay, netherlands, croatia, luxembourg];
-hard22 = [elsalvador, nicaragua, honduras, sierraleone];
-hard23 = [tunisia, hongkong, isleofman, kyrgyzstan];
-hard24 = [russianfederation, bulgaria, slovenia, slovakia];
-hard25 = [kyrgyzstan, vietnam, china, hongkong];
-hard26 = [palestine, westernsahara, jordan, unitedarabemirates];
-hard27 = [unitedkingdom, unitedkingdom, georgia, guernsey];
-hard28 = [westernsahara, palestine, jordan, unitedarabemirates];
-hard29 = [mexico, italy, saintmartin, france];
-hard30 = [senegal, mali, romania, chad];
-hard31 = [montenegro, vietnam, china, isleofman];
-hard32 = [ireland, italy, mexico, france];
-hard33 = [turkey, china, isleofman, vietnam];
-hard34 = [mali, senegal, chad, romania];
-hard35 = [bulgaria, russianfederation, slovakia, slovenia];
+hard9 = [venezuela, ecuador,colombia, bolivia];
+hard10 = [cotedivoire, ireland, niger, india ]
+
+
+// hard13 = [china, vietnam, isleofman, morocco];
+// hard15 = [honduras, nicaragua, elsalvador, sierraleone];
+// hard16 = [hungary, netherlands, yemen, egypt];
+// hard17 = [hongkong, tunisia, vietnam, isleofman];
+// hard18 = [netherlands, paraguay, hungary, croatia];
+// hard19 = [italy, mexico, ireland, saintmartin];
+// hard20 = [morocco, china, isleofman, vietnam];
+// hard21 = [paraguay, netherlands, croatia, luxembourg];
+// hard22 = [elsalvador, nicaragua, honduras, sierraleone];
+// hard24 = [russianfederation, bulgaria, slovenia, slovakia];
+// hard25 = [kyrgyzstan, vietnam, china, hongkong];
+// hard26 = [palestine, westernsahara, jordan, unitedarabemirates];
+// hard27 = [finland, unitedkingdom, georgia, guernsey];
+// hard29 = [mexico, italy, saintmartin, france];
+// hard30 = [senegal, mali, romania, chad];
+// hard32 = [ireland, italy, mexico, france];
+// hard35 = [bulgaria, russianfederation, slovakia, slovenia];
 
 /* Flag waving animation */
   var h = $('.flag').width();
@@ -316,8 +310,9 @@ let easyFlags = [
 unitedkingdom, unitedstates,australia,france,germany,brazil,argentina,canada
 ];
 
-let hardFlags = [hard1, hard2,hard3,hard4,hard5,hard6,hard7,hard8,hard9,hard11, hard12,hard13,hard14,hard15,hard16,hard17,hard18,hard19,hard20,hard21,hard22,hard23,hard24,hard25,hard26,hard27,hard28,hard29,hard30,hard31,hard32,hard33,hard34,hard35];
-
+let hardFlags = [hard1, hard2,hard3,hard4,hard5,hard6,hard7,hard8,hard9,hard10
+  // , hard12,hard13,hard14,hard15,hard16,hard17,hard18,hard19,hard20,hard21,hard22,hard23,hard24,hard25,hard26,hard27,hard28,hard29,hard30,hard31,hard32,hard33,hard34,hard35];
+]
 shuffle(hardFlags);
 
 let usaFlags = [
@@ -786,7 +781,6 @@ function resetGame() {
   disablep2();
   count = 2;
   flags=allFlags;
-  partyRound=1;
   document.getElementById('winText').innerHTML =  "You win."; 
   document.getElementById('loseText').innerHTML =  "You lost.";
   partyScore=0;
