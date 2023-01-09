@@ -640,7 +640,7 @@ function partyGuessed(guess) {
   answer = generateAnswer(0, 3);
   shuffle(flags);
   setTimeout(function(){ 
-  if (partyRound === 10) {
+  if (partyRound === 5) {
     partyRound=1;
     showScores();
     document.getElementById("gameStartParty").style.display="none";
@@ -674,19 +674,19 @@ function showScores(){
   if (partyScore === 0) {
     document.getElementById("partyText").innerHTML = "Ouch";
   } else 
-  if (partyScore < 4) {
+  if (partyScore < 2) {
     document.getElementById("partyText").innerHTML = "Try harder";
   } else 
-  if (partyScore < 7) {
+  if (partyScore < 3) {
     document.getElementById("partyText").innerHTML = "Good effort";
   } else 
-  if (partyScore < 9) {
+  if (partyScore < 4) {
     document.getElementById("partyText").innerHTML = "Well done!";
   } else 
-  if (partyScore === 9) {
-    document.getElementById("partyText").innerHTML = "Excellent";
-  } else 
-  if (partyScore === 10) {
+  // if (partyScore === 9) {
+  //   document.getElementById("partyText").innerHTML = "Excellent";
+  // } else 
+  if (partyScore === 5) {
     document.getElementById("partyText").innerHTML = "Perfect";
   }
 }
@@ -774,11 +774,11 @@ function resetGame() {
   document.getElementById("ps3").className = "noanswer";
   document.getElementById("ps4").className = "noanswer";
   document.getElementById("ps5").className = "noanswer";
-  document.getElementById("ps6").className = "noanswer";
-  document.getElementById("ps7").className = "noanswer";
-  document.getElementById("ps8").className = "noanswer";
-  document.getElementById("ps9").className = "noanswer";
-  document.getElementById("ps10").className = "noanswer";
+  // document.getElementById("ps6").className = "noanswer";
+  // document.getElementById("ps7").className = "noanswer";
+  // document.getElementById("ps8").className = "noanswer";
+  // document.getElementById("ps9").className = "noanswer";
+  // document.getElementById("ps10").className = "noanswer";
   document.getElementById("pScore").style.display="none";
   document.getElementById("countdown").innerHTML = "3";
   joinScreen();
