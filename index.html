@@ -66,8 +66,8 @@
 <body>
 
 <!--preload sounds-->
-<audio id="passSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2FComputer%20Error%20Alert-SoundBible.com-783113881.mp3?v=1573189144087" preload="auto"></audio>
-<audio id="correctSound" src="https://cdn.glitch.com/57b6d905-4694-466f-8144-3fc7ce576567%2Fsoundsilk-Correct-Answer-Soundeffect.mp3?v=1573189144712" preload="auto"></audio> 
+<audio id="passSound" src="public/sound-incorrect.mp3" type="audio/mpeg" preload="auto"></audio>
+<audio id="correctSound" src="public/sound-correct.mp3" type="audio/mpeg" preload="auto"></audio> 
   
 <!--*****************************    
 Welcome splash screen 
@@ -80,7 +80,7 @@ Welcome splash screen
    </div>   
   </section> 
   <a onclick="resetGame()" id="backButton" class="btn backButton" style="display: none;"><i class="fa fa-arrow-left"></i> Back</a>
-    
+  <a onclick="toggleMute()" id="toggleMute" class = "btn muteButton" style="display: none;"> <i id="muteIcon" class="fa fa-bell"></i></a>
 <!--*****************************  Join game screen **************************-->
   <section id="joinScreen" style="display:none">
    <br>
@@ -126,9 +126,9 @@ Welcome splash screen
         <div class="d-grid">
           <button  onclick="joinGameUSA()" class="splashButtons">USA</button>
         </div>
-        <div class="d-grid">
+        <!-- <div class="d-grid">
           <button onclick="joinGameBruce()" class="splashButtons">Bruce</button>
-        </div>
+        </div> -->
     </div>
     </div>
   </section>

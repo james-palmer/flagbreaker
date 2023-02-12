@@ -27,6 +27,14 @@ a {
   right:0px;
 }
 
+.muteButton{
+  position: fixed;
+  color:white !important;
+  top: 10px;
+  left:20px;
+  font-size: 2rem;
+}
+
 .gameBack{
   color:white !important;
   top: -30px;
