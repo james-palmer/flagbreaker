@@ -33,7 +33,7 @@ var caribbeannetherlands = {name: 'Caribbean Netherlands', flag: 'flag_images/bq
 var brazil = {name: 'Brazil', flag: 'flag_images/br.png'};
 var bahamas = {name: 'Bahamas', flag: 'flag_images/bs.png'};
 var bhutan = {name: 'Bhutan', flag: 'flag_images/bt.png'};
-var bouvetisland = {name: 'Bouvet Island', flag: 'flag_images/bv.png'};
+// var bouvetisland = {name: 'Bouvet Island', flag: 'flag_images/bv.png'};
 var botswana = {name: 'Botswana', flag: 'flag_images/bw.png'};
 var belarus = {name: 'Belarus', flag: 'flag_images/by.png'};
 var belize = {name: 'Belize', flag: 'flag_images/bz.png'};
@@ -249,7 +249,7 @@ var mode;
 var difficulty;
 
 hard1 = [iraq, egypt, yemen, syrianarabrepublic];
-hard2 = [monaco, indonesia,poland,austria]
+hard2 = [monaco, indonesia,poland,austria, latvia]
 hard3 = [vietnam, isleofman, china, kyrgyzstan];
 hard4 = [hungary, netherlands, luxembourg, paraguay];
 hard5 = [romania, chad, andorra, moldova];
@@ -259,6 +259,19 @@ hard8 = [nicaragua, honduras, elsalvador, sierraleone];
 hard9 = [venezuela, ecuador,colombia, bolivia];
 hard10 = [cotedivoire, ireland, niger, india ]
 
+var passSound = document.getElementById('passSound');
+var correctSound = document.getElementById('correctSound');
+let mute = false;
+function toggleMute() {
+  passSound.muted = !passSound.muted;
+  correctSound.muted = !correctSound.muted;
+  mute = !mute;
+  if (mute == true) {
+    document.getElementById('muteIcon').className = "fa fa-bell-slash";
+  } else {
+    document.getElementById('muteIcon').className = "fa fa-bell";
+  }
+}
 
 // hard13 = [china, vietnam, isleofman, morocco];
 // hard15 = [honduras, nicaragua, elsalvador, sierraleone];
@@ -303,7 +316,7 @@ function joinScreen(){
 let flags = [];
 
 let allFlags = [
-  zimbabwe, zambia, southafrica, mayotte, yemen, kosovo, samoa, wallisandfutunaislands, vanuatu, vietnam, virginislands, venezuela, saintvincentandthegrenadines, uzbekistan, uruguay, unitedstates, uganda, ukraine, tanzania, taiwan, tuvalu, trinidadandtobago, turkey, tonga, tunisia, turkmenistan, timorleste, tokelau, tajikistan, thailand, togo, chad, swaziland, syrianarabrepublic, elsalvador, saotomeandprincipe, southsudan, suriname, somalia, senegal, sanmarino, sierraleone, slovakia, svalbardandjanmayenislands, slovenia, singapore, sweden, sudan, seychelles, solomonislands, saudiarabia, rwanda, russianfederation, serbia, romania, réunion, qatar, paraguay, palau, portugal, palestine, puertorico, pitcairn, saintpierreandmiquelon, poland, pakistan, philippines, papuanewguinea, frenchpolynesia, peru, panama, oman, newzealand, niue, nauru, nepal, norway, netherlands, nicaragua, nigeria, norfolkisland, niger, newcaledonia, namibia, mozambique, malaysia, mexico, malawi, maldives, mauritius, malta, montserrat, mauritania, martinique, northernmarianaislands, macao, mongolia, myanmar, mali, northmacedonia, marshallislands, madagascar, saintmartin, montenegro, moldova, monaco, morocco, libya, latvia, luxembourg, lithuania, lesotho, liberia, srilanka, liechtenstein, saintlucia, lebanon, laos, kazakhstan, caymanislands, kuwait, southkore, northkorea, saintkittsandnevis, comoros, kiribati, cambodia, kyrgyzstan, kenya, japan, jordan, jamaica, jersey, italy, iceland, iran, iraq, india, isleofman, israel, ireland, indonesia, hungary, haiti, croatia, honduras, hongkong, guyana, guineabissau, guam, guatemala, greece, equatorialguinea, guadeloupe, guinea, gambia, greenland, gibraltar, ghana, guernsey, frenchguiana, georgia, grenada, unitedkingdom, wales, scotland, northernireland, england, gabon, france, faroeislands, micronesia, falklandislands, fiji, finland, europe, ethiopia, spain, eritrea, westernsahara, egypt, estonia, ecuador, algeria, dominicanrepublic, dominica, denmark, djibouti, germany, czechrepublic, cyprus, christmasisland, curaca, capeverde, cuba, costarica, colombia, china, cameroon, chile, cookislands, cotedivoire, switzerland, republicofthecongo, centralafricanrepublic, drc, cocosisland, canada, belize, belarus, botswana, bouvetisland, bhutan, bahamas, brazil, caribbeannetherlands, bolivia, brunei, bermuda, saintbarthélemy, benin, burundi, bahrain, bulgaria, burkinafaso, belgium, bangladesh, barbados, bosniaandherzegovina, azerbaijan, faroeislands, aruba, australia, austria, americansamoa, argentina, antarctica, angola, armenia, albania, anguilla, antiguaandbarbuda, afghanistan, unitedarabemirates, andorra 
+  zimbabwe, zambia, southafrica, yemen, kosovo, samoa, wallisandfutunaislands, vanuatu, vietnam, virginislands, venezuela, saintvincentandthegrenadines, uzbekistan, uruguay, unitedstates, uganda, ukraine, tanzania, taiwan, tuvalu, trinidadandtobago, turkey, tonga, tunisia, turkmenistan, timorleste, tokelau, tajikistan, thailand, togo, chad, swaziland, syrianarabrepublic, elsalvador, saotomeandprincipe, southsudan, suriname, somalia, senegal, sanmarino, sierraleone, slovakia, svalbardandjanmayenislands, slovenia, singapore, sweden, sudan, seychelles, solomonislands, saudiarabia, rwanda, russianfederation, serbia, romania, réunion, qatar, paraguay, palau, portugal, palestine, puertorico, pitcairn, saintpierreandmiquelon, poland, pakistan, philippines, papuanewguinea, frenchpolynesia, peru, panama, oman, newzealand, niue, nauru, nepal, norway, netherlands, nicaragua, nigeria, norfolkisland, niger, newcaledonia, namibia, mozambique, malaysia, mexico, malawi, maldives, mauritius, malta, montserrat, mauritania, martinique, northernmarianaislands, macao, mongolia, myanmar, mali, northmacedonia, marshallislands, madagascar, saintmartin, montenegro, moldova, monaco, morocco, libya, latvia, luxembourg, lithuania, lesotho, liberia, srilanka, liechtenstein, saintlucia, lebanon, laos, kazakhstan, caymanislands, kuwait, southkore, northkorea, saintkittsandnevis, comoros, kiribati, cambodia, kyrgyzstan, kenya, japan, jordan, jamaica, jersey, italy, iceland, iran, iraq, india, isleofman, israel, ireland, indonesia, hungary, haiti, croatia, honduras, hongkong, guyana, guineabissau, guam, guatemala, greece, equatorialguinea, guadeloupe, guinea, gambia, greenland, gibraltar, ghana, guernsey, frenchguiana, georgia, grenada, unitedkingdom, wales, scotland, northernireland, england, gabon, france, faroeislands, micronesia, falklandislands, fiji, finland, europe, ethiopia, spain, eritrea, westernsahara, egypt, estonia, ecuador, algeria, dominicanrepublic, dominica, denmark, djibouti, germany, czechrepublic, cyprus, christmasisland, curaca, capeverde, cuba, costarica, colombia, china, cameroon, chile, cookislands, cotedivoire, switzerland, republicofthecongo, centralafricanrepublic, drc, cocosisland, canada, belize, belarus, botswana, bhutan, bahamas, brazil, caribbeannetherlands, bolivia, brunei, bermuda, saintbarthélemy, benin, burundi, bahrain, bulgaria, burkinafaso, belgium, bangladesh, barbados, bosniaandherzegovina, azerbaijan, faroeislands, aruba, australia, austria, americansamoa, argentina, antarctica, angola, armenia, albania, anguilla, antiguaandbarbuda, afghanistan, unitedarabemirates, andorra 
   ];
 
 let easyFlags = [
@@ -328,6 +341,7 @@ function  joinGame() {
     } else if (mode==="party"){
       document.getElementById("gameStartParty").style.display = "block"; 
       document.getElementById("pinstructions").style.display = "block";
+      document.getElementById("toggleMute").style.display = "block";
     }
   shuffle(flags);
   };
@@ -463,6 +477,7 @@ function gameStart()  {
 };   
 
 function gameStartParty(){
+  document.getElementById("toggleMute").style.display = "none";
   document.getElementById("pinstructions").style.display = "none";
   document.getElementById("pScore").style.display="flex";
   document.getElementById("backButton").style.display = "none";
@@ -508,7 +523,7 @@ function p1Guessed(guess) {
      document.getElementById('gameStart').style.display="none";
      if (difficulty === "bruce") {
       bruceEndSplash();
-      document.getElementById('passSound').play();
+      passSound.play();
       document.getElementById("endSplashButton").style.display="block";
     } else {
       document.getElementById("confetti").style.display="block";
@@ -527,7 +542,7 @@ function p1Guessed(guess) {
   }
   else 
   {
-    document.getElementById('passSound').play();
+    passSound.play();
     disablep1();
     enablep2();
   }
@@ -644,6 +659,7 @@ function partyGuessed(guess) {
     setTimeout(function(){ 
       document.getElementById("fireworks").style.display="none";
       document.getElementById("endSplashButtonParty").style.display="block";
+      document.getElementById("toggleMute").style.display = "none";
     }, 5000);
     var animFireworks = bodymovin.loadAnimation({
       wrapper: fireworks,
@@ -779,6 +795,7 @@ function resetGame() {
   document.getElementById("ps10").className = "noanswer";
   document.getElementById("pScore").style.display="none";
   document.getElementById("countdown").innerHTML = "3";
+  document.getElementById("toggleMute").style.display = "none";
   joinScreen();
   disablep1();
   disablep2();
