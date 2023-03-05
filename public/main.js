@@ -192,7 +192,7 @@ var qatar = {name: 'Qatar', flag: 'flag_images/qa.png'};
 var réunion = {name: 'Réunion', flag: 'flag_images/re.png'};
 var romania = {name: 'Romania', flag: 'flag_images/ro.png'};
 var serbia = {name: 'Serbia', flag: 'flag_images/rs.png'};
-var russianfederation = {name: 'Russian Federation', flag: 'flag_images/ru.png'};
+var russianfederation = {name: 'Russia', flag: 'flag_images/ru.png'};
 var rwanda = {name: 'Rwanda', flag: 'flag_images/rw.png'};
 var saudiarabia = {name: 'Saudi Arabia', flag: 'flag_images/sa.png'};
 var solomonislands = {name: 'Solomon Islands', flag: 'flag_images/sb.png'};
@@ -261,6 +261,9 @@ hard10 = [cotedivoire, ireland, niger, india ]
 
 var passSound = document.getElementById('passSound');
 var correctSound = document.getElementById('correctSound');
+
+var survivalHighScore = localStorage.getItem("highscore");
+
 let mute = false;
 function toggleMute() {
   passSound.muted = !passSound.muted;
@@ -305,6 +308,26 @@ function toggleMute() {
 
 document.getElementById('join-button').onclick = function()  {joinScreen();};   
 
+let flags = [];
+
+let allFlags = [
+  zimbabwe, zambia, southafrica, yemen, kosovo, samoa, wallisandfutunaislands, vanuatu, vietnam, virginislands, venezuela, saintvincentandthegrenadines, uzbekistan, uruguay, unitedstates, uganda, ukraine, tanzania, taiwan, tuvalu, trinidadandtobago, turkey, tonga, tunisia, turkmenistan, timorleste, tokelau, tajikistan, thailand, togo, chad, swaziland, syrianarabrepublic, elsalvador, saotomeandprincipe, southsudan, suriname, somalia, senegal, sanmarino, sierraleone, slovakia, svalbardandjanmayenislands, slovenia, singapore, sweden, sudan, seychelles, solomonislands, saudiarabia, rwanda, russianfederation, serbia, romania, réunion, qatar, paraguay, palau, portugal, palestine, puertorico, pitcairn, saintpierreandmiquelon, poland, pakistan, philippines, papuanewguinea, frenchpolynesia, peru, panama, oman, newzealand, niue, nauru, nepal, norway, netherlands, nicaragua, nigeria, norfolkisland, niger, newcaledonia, namibia, mozambique, malaysia, mexico, malawi, maldives, mauritius, malta, montserrat, mauritania, martinique, northernmarianaislands, macao, mongolia, myanmar, mali, northmacedonia, marshallislands, madagascar, saintmartin, montenegro, moldova, monaco, morocco, libya, latvia, luxembourg, lithuania, lesotho, liberia, srilanka, liechtenstein, saintlucia, lebanon, laos, kazakhstan, caymanislands, kuwait, southkore, northkorea, saintkittsandnevis, comoros, kiribati, cambodia, kyrgyzstan, kenya, japan, jordan, jamaica, jersey, italy, iceland, iran, iraq, india, isleofman, israel, ireland, indonesia, hungary, haiti, croatia, honduras, hongkong, guyana, guineabissau, guam, guatemala, greece, equatorialguinea, guadeloupe, guinea, gambia, greenland, gibraltar, ghana, guernsey, frenchguiana, georgia, grenada, unitedkingdom, wales, scotland, northernireland, england, gabon, france, faroeislands, micronesia, falklandislands, fiji, finland, europe, ethiopia, spain, eritrea, westernsahara, egypt, estonia, ecuador, algeria, dominicanrepublic, dominica, denmark, djibouti, germany, czechrepublic, cyprus, christmasisland, curaca, capeverde, cuba, costarica, colombia, china, cameroon, chile, cookislands, cotedivoire, switzerland, republicofthecongo, centralafricanrepublic, drc, cocosisland, canada, belize, belarus, botswana, bhutan, bahamas, brazil, caribbeannetherlands, bolivia, brunei, bermuda, saintbarthélemy, benin, burundi, bahrain, bulgaria, burkinafaso, belgium, bangladesh, barbados, bosniaandherzegovina, azerbaijan, faroeislands, aruba, australia, austria, americansamoa, argentina, antarctica, angola, armenia, albania, anguilla, antiguaandbarbuda, afghanistan, unitedarabemirates, andorra 
+  ];
+
+let easyFlags = [
+unitedkingdom, unitedstates,australia,france,germany,brazil,argentina,canada, spain, mexico, portugal,netherlands, sweden, china, russianfederation,
+];
+
+let hardFlags = [
+  hard1, hard2,hard3,hard4,hard5,hard6,hard7,hard8,hard9,hard10
+]
+
+let usaFlags = [
+  unitedstates, unitedstates,unitedstates,unitedstates
+];
+
+shuffle(hardFlags);
+
 function joinScreen(){
   document.getElementById("page-splash").style.display = "none";
   document.getElementById("joinScreen").style.display = "block";
@@ -313,51 +336,32 @@ function joinScreen(){
   document.getElementById("fun").style.display = "none";
 };
 
-let flags = [];
-
-let allFlags = [
-  zimbabwe, zambia, southafrica, yemen, kosovo, samoa, wallisandfutunaislands, vanuatu, vietnam, virginislands, venezuela, saintvincentandthegrenadines, uzbekistan, uruguay, unitedstates, uganda, ukraine, tanzania, taiwan, tuvalu, trinidadandtobago, turkey, tonga, tunisia, turkmenistan, timorleste, tokelau, tajikistan, thailand, togo, chad, swaziland, syrianarabrepublic, elsalvador, saotomeandprincipe, southsudan, suriname, somalia, senegal, sanmarino, sierraleone, slovakia, svalbardandjanmayenislands, slovenia, singapore, sweden, sudan, seychelles, solomonislands, saudiarabia, rwanda, russianfederation, serbia, romania, réunion, qatar, paraguay, palau, portugal, palestine, puertorico, pitcairn, saintpierreandmiquelon, poland, pakistan, philippines, papuanewguinea, frenchpolynesia, peru, panama, oman, newzealand, niue, nauru, nepal, norway, netherlands, nicaragua, nigeria, norfolkisland, niger, newcaledonia, namibia, mozambique, malaysia, mexico, malawi, maldives, mauritius, malta, montserrat, mauritania, martinique, northernmarianaislands, macao, mongolia, myanmar, mali, northmacedonia, marshallislands, madagascar, saintmartin, montenegro, moldova, monaco, morocco, libya, latvia, luxembourg, lithuania, lesotho, liberia, srilanka, liechtenstein, saintlucia, lebanon, laos, kazakhstan, caymanislands, kuwait, southkore, northkorea, saintkittsandnevis, comoros, kiribati, cambodia, kyrgyzstan, kenya, japan, jordan, jamaica, jersey, italy, iceland, iran, iraq, india, isleofman, israel, ireland, indonesia, hungary, haiti, croatia, honduras, hongkong, guyana, guineabissau, guam, guatemala, greece, equatorialguinea, guadeloupe, guinea, gambia, greenland, gibraltar, ghana, guernsey, frenchguiana, georgia, grenada, unitedkingdom, wales, scotland, northernireland, england, gabon, france, faroeislands, micronesia, falklandislands, fiji, finland, europe, ethiopia, spain, eritrea, westernsahara, egypt, estonia, ecuador, algeria, dominicanrepublic, dominica, denmark, djibouti, germany, czechrepublic, cyprus, christmasisland, curaca, capeverde, cuba, costarica, colombia, china, cameroon, chile, cookislands, cotedivoire, switzerland, republicofthecongo, centralafricanrepublic, drc, cocosisland, canada, belize, belarus, botswana, bhutan, bahamas, brazil, caribbeannetherlands, bolivia, brunei, bermuda, saintbarthélemy, benin, burundi, bahrain, bulgaria, burkinafaso, belgium, bangladesh, barbados, bosniaandherzegovina, azerbaijan, faroeislands, aruba, australia, austria, americansamoa, argentina, antarctica, angola, armenia, albania, anguilla, antiguaandbarbuda, afghanistan, unitedarabemirates, andorra 
-  ];
-
-let easyFlags = [
-unitedkingdom, unitedstates,australia,france,germany,brazil,argentina,canada
-];
-
-let hardFlags = [hard1, hard2,hard3,hard4,hard5,hard6,hard7,hard8,hard9,hard10
-  // , hard12,hard13,hard14,hard15,hard16,hard17,hard18,hard19,hard20,hard21,hard22,hard23,hard24,hard25,hard26,hard27,hard28,hard29,hard30,hard31,hard32,hard33,hard34,hard35];
-]
-shuffle(hardFlags);
-
-let usaFlags = [
-  unitedstates, unitedstates,unitedstates,unitedstates
-];
-
-function  joinGame() {
-  document.getElementById("joinScreen").style.display = "none";
-  if (mode==="duel"){
-  document.getElementById("gameStart").style.display = "block"; 
-  document.getElementById("instructions").style.display = "block";
-  flagDirection();
-    } else if (mode==="party"){
-      document.getElementById("gameStartParty").style.display = "block"; 
-      document.getElementById("pinstructions").style.display = "block";
-      document.getElementById("toggleMute").style.display = "block";
-    }
-  shuffle(flags);
-  };
-
 function  joinGameDuel() {
+  mode = "duel";
   document.getElementById("mode").style.display = "none";
   document.getElementById("difficulty").style.display = "block";
-  mode = "duel";
+  document.getElementById("backButton").style.display = "block";
+};
+
+function  joinGameSolo() {
+  document.getElementById("mode").style.display = "none";
+  document.getElementById("soloMode").style.display = "block";
   document.getElementById("backButton").style.display = "block";
 };
 
 function  joinGameParty() {
-  document.getElementById("mode").style.display = "none";
-  document.getElementById("difficulty").style.display = "block";
   mode = "party";
+  document.getElementById("soloMode").style.display = "none";
+  document.getElementById("difficulty").style.display = "block";
   document.getElementById("backButton").style.display = "block";
+};
+
+function  joinGameSurvival() {
+  mode = "survival";
+  flags = allFlags
+  document.getElementById("backButton").style.display = "block";
+  document.getElementById("soloMode").style.display = "none";
+  joinGame();
 };
 
 function joinGameEasy() {
@@ -376,6 +380,7 @@ function joinGameCryptic(){
   flags = allFlags;
   difficulty = "cryptic";
   document.getElementById('flag').classList.add("invert");
+  document.getElementById('pflag').classList.add("invert");
   joinGame();
 }
 
@@ -403,6 +408,32 @@ function joinGameFun(){
   document.getElementById("fun").style.display = "block";
   document.getElementById("backButton").style.display = "block";
 }
+
+function  joinGame() {
+  survivalScore = 0;
+  partyRound = 0;
+  partyScore = 0;
+  document.getElementById("joinScreen").style.display = "none";
+  if (mode==="duel"){
+  document.getElementById("gameStart").style.display = "block"; 
+  document.getElementById("instructions").style.display = "block";
+  document.getElementById("backButton").style.display = "none";
+  flagDirection();
+  } else if (mode==="party"){
+    document.getElementById("gameStartParty").style.display = "block"; 
+    document.getElementById("pinstructions").style.display = "block";
+    document.getElementById("toggleMute").style.display = "block";
+  }
+  else if (mode==="survival"){
+    document.getElementById("gameStartSurvival").style.display = "block"; 
+    document.getElementById("sinstructions").style.display = "block";
+    document.getElementById("toggleMute").style.display = "block";
+    if (survivalHighScore > 0){
+      document.getElementById("showCurrentHighScore").innerHTML = "High score: "+survivalHighScore
+    }
+  }
+  shuffle(flags);
+  };
 
 function shuffle(arra1) {
     var ctr = arra1.length, temp, index;
@@ -460,6 +491,7 @@ function  startGameRegular(){
 
 function gameStart()  {
   document.getElementById("instructions").style.display = "none";
+  document.getElementById("duelBack").style.display = "none";
   document.getElementById("countdown").style.display = "block";
   var timer  = setInterval(function() {
     // startGameTimer(count);
@@ -497,6 +529,29 @@ function gameStartParty(){
   document.getElementById("p4").disabled = false;
 }
 
+function gameStartSurvival(){
+  document.getElementById("toggleMute").style.display = "none";
+  document.getElementById("sinstructions").style.display = "none";
+  document.getElementById("survivalBack").style.display = "none";
+  document.getElementById("sScore").style.display="flex";
+  document.getElementById("sflag").src=  flags[answer].flag;
+  document.getElementById("sflag").style.display = "block";
+  flag1 = flags[0];
+  flag2 = flags[1];
+  flag3 = flags[2];
+  flag4 = flags[3];
+  document.getElementById('s1').innerHTML =  flag1.name; 
+  document.getElementById('s2').innerHTML =  flag2.name; 
+  document.getElementById('s3').innerHTML =  flag3.name; 
+  document.getElementById('s4').innerHTML =  flag4.name;  
+  document.getElementById("s1").disabled = false;
+  document.getElementById("s2").disabled = false;
+  document.getElementById("s3").disabled = false;
+  document.getElementById("s4").disabled = false;
+}
+
+
+// Duel mode user answers
 document.getElementById('2-1').onclick = function()  {p2Guessed(0);};   
 document.getElementById('2-2').onclick = function()  {p2Guessed(1);};   
 document.getElementById('2-3').onclick = function()  {p2Guessed(2);};   
@@ -587,18 +642,20 @@ function p2Guessed(guess) {
 }
 
 partyRound = 0;
-partyScore=0;
+roundId = "ps" + partyRound
+partyScore = 0;
+survivalScore = 0;
+
+// Party mode user answers
 document.getElementById('p1').onclick = function()  {partyGuessed(0);};   
 document.getElementById('p2').onclick = function()  {partyGuessed(1);};   
 document.getElementById('p3').onclick = function()  {partyGuessed(2);};   
-document.getElementById('p4').onclick = function()  {partyGuessed(3);};   
-
-roundId = "ps" + partyRound
+document.getElementById('p4').onclick = function()  {partyGuessed(3);};
 
 function partyGuessed(guess) {
-  
   partyRound++;
   roundId = "ps" + partyRound
+  shuffle(flags);
   disableParty();
   if (answer===0) {
     document.getElementById('p1').className = "gameButtons rightAnswer";
@@ -639,16 +696,18 @@ function partyGuessed(guess) {
     if (guess===3) {
       document.getElementById('p4').className = "gameButtons wrongAnswer";
     }
+    if (difficulty==="hard") {
+      flags=hardFlags[partyRound-1];
+    } 
     document.getElementById('passSound').play();
   }
-  if (difficulty==="usa"){
-    document.getElementById("p1").className = "gameButtons rightAnswer"; 
-    document.getElementById("p2").className = "gameButtons rightAnswer"; 
-    document.getElementById("p3").className = "gameButtons rightAnswer"; 
-    document.getElementById("p4").className = "gameButtons rightAnswer"; 
-  }
+    if (difficulty==="usa"){
+      document.getElementById("p1").className = "gameButtons rightAnswer"; 
+      document.getElementById("p2").className = "gameButtons rightAnswer"; 
+      document.getElementById("p3").className = "gameButtons rightAnswer"; 
+      document.getElementById("p4").className = "gameButtons rightAnswer"; 
+    }
   answer = generateAnswer(0, 3);
-  shuffle(flags);
   setTimeout(function(){ 
   if (partyRound === 10) {
     partyRound=1;
@@ -677,31 +736,125 @@ function partyGuessed(guess) {
   }, 3000); 
 };
 
-function showScores(){
-  document.getElementById("pwinText").innerHTML = partyScore;
-  if (difficulty==="bruce"){
-    document.getElementById("pBruce").innerHTML = "It doesn't matter what you scored, Bruce beat you.";
+document.getElementById('s1').onclick = function()  {survivalGuessed(0);};   
+document.getElementById('s2').onclick = function()  {survivalGuessed(1);};   
+document.getElementById('s3').onclick = function()  {survivalGuessed(2);};   
+document.getElementById('s4').onclick = function()  {survivalGuessed(3);};
+
+function survivalGuessed(guess) {
+  if (survivalScore > 10 && generateAnswer(0,6) === 0) {
+    console.log("hard");
+    shuffle(hardFlags);
+    flags = hardFlags[0];
+  } else {
+    flags = allFlags
+    shuffle(flags);
+  };
+  disableParty();
+  if (answer===0) {
+    document.getElementById('s1').className = "gameButtons rightAnswer";
   }
-  if (partyScore === 0) {
-    document.getElementById("partyText").innerHTML = "Ouch";
-  } else 
-  if (partyScore < 3) {
-    document.getElementById("partyText").innerHTML = "Try harder";
-  } else 
-  if (partyScore < 5) {
-    document.getElementById("partyText").innerHTML = "Not bad";
-  } else 
-  if (partyScore < 7) {
-    document.getElementById("partyText").innerHTML = "Good effort";
-  } else 
-  if (partyScore < 8) {
-    document.getElementById("partyText").innerHTML = "Well done!";
-  } else 
-  if (partyScore === 9) {
-    document.getElementById("partyText").innerHTML = "Excellent";
-  } else 
-  if (partyScore === 10) {
-    document.getElementById("partyText").innerHTML = "Perfect";
+  if (answer===1) {
+    document.getElementById('s2').className = "gameButtons rightAnswer";
+  }
+  if (answer===2) {
+    document.getElementById('s3').className = "gameButtons rightAnswer";
+  }
+  if (answer===3) {
+    document.getElementById('s4').className = "gameButtons rightAnswer";
+  }
+  if (guess === answer || difficulty === "usa"){
+    survivalScore++;
+    document.getElementById('correctSound').play();
+  }
+  else 
+  {
+    if (guess===0) {
+      document.getElementById('s1').className = "gameButtons wrongAnswer";
+    }
+    if (guess===1) {
+      document.getElementById('s2').className = "gameButtons wrongAnswer";
+    }
+    if (guess===2) {
+      document.getElementById('s3').className = "gameButtons wrongAnswer";
+    }
+    if (guess===3) {
+      document.getElementById('s4').className = "gameButtons wrongAnswer";
+    }
+    document.getElementById('passSound').play();
+    //exit here for survival mode
+    setTimeout(function(){
+      showScores();
+      document.getElementById("gameStartSurvival").style.display="none";
+      document.getElementById("sflag").style.display="none";
+      document.getElementById("roundEndParty").style.display="block";
+      document.getElementById("fireworks").style.display="block";
+      setTimeout(function(){ 
+        document.getElementById("fireworks").style.display="none";
+        document.getElementById("endSplashButtonParty").style.display="block";
+      }, 5000);
+      var animFireworks = bodymovin.loadAnimation({
+        wrapper: fireworks,
+        animType: 'svg',
+        loop: true,
+        path: 'public/fireworks.json'
+      });
+    },3000);
+  }
+  answer = generateAnswer(0, 3);
+  document.getElementById("currentSurvivalScore").innerHTML = survivalScore;
+  setTimeout(function(){ 
+  gameStartSurvival();
+  enableParty();
+  document.getElementById('s1').className = "gameButtons";
+  document.getElementById('s2').className = "gameButtons";
+  document.getElementById('s3').className = "gameButtons";
+  document.getElementById('s4').className = "gameButtons";
+  }, 3000); 
+};
+
+function showScores(){
+  if (mode === "party") {
+    document.getElementById("pwinText").innerHTML = partyScore+"/10";
+    if (difficulty==="bruce"){
+      document.getElementById("pBruce").innerHTML = "It doesn't matter what you scored, Bruce beat you.";
+    }
+    if (partyScore === 0) {
+      document.getElementById("partyText").innerHTML = "Ouch";
+    } else 
+    if (partyScore < 3) {
+      document.getElementById("partyText").innerHTML = "Try harder";
+    } else 
+    if (partyScore < 5) {
+      document.getElementById("partyText").innerHTML = "Not bad";
+    } else 
+    if (partyScore < 7) {
+      document.getElementById("partyText").innerHTML = "Good effort";
+    } else 
+    if (partyScore < 8) {
+      document.getElementById("partyText").innerHTML = "Well done!";
+    } else 
+    if (partyScore === 9) {
+      document.getElementById("partyText").innerHTML = "Excellent";
+    } else 
+    if (partyScore === 10) {
+      document.getElementById("partyText").innerHTML = "Perfect";
+    }
+  } else
+  if (mode === "survival") {
+    document.getElementById("pwinText").innerHTML = survivalScore;
+    if (survivalScore === 0){
+      document.getElementById("partyText").innerHTML = "Ouch";
+    } else if (survivalScore > survivalHighScore || survivalHighScore === null) {
+      document.getElementById("partyText").innerHTML = "New high score!";
+      localStorage.setItem("highscore", survivalScore);
+      survivalHighScore = survivalScore
+    } else if (survivalScore == survivalHighScore) {
+      document.getElementById("partyText").innerHTML = "Joint high score"; 
+    }
+    else {
+      document.getElementById("partyText").innerHTML = "High score: "+survivalHighScore;
+    }
   }
 }
 
@@ -739,6 +892,10 @@ function disableParty() {
   document.getElementById("p2").disabled = true;
   document.getElementById("p3").disabled = true;
   document.getElementById("p4").disabled = true;
+  document.getElementById("s1").disabled = true;
+  document.getElementById("s2").disabled = true;
+  document.getElementById("s3").disabled = true;
+  document.getElementById("s4").disabled = true;
 };
 
 function enableParty() {
@@ -746,6 +903,10 @@ function enableParty() {
   document.getElementById("p2").disabled = false;
   document.getElementById("p3").disabled = false;
   document.getElementById("p4").disabled = false;
+  document.getElementById("s1").disabled = false;
+  document.getElementById("s2").disabled = false;
+  document.getElementById("s3").disabled = false;
+  document.getElementById("s4").disabled = false;
 };
 
 function bruceEndSplash(){
@@ -758,11 +919,10 @@ function resetGame() {
   document.getElementById("backButton").style.display = "none";
   document.getElementById('roundEnd').style.display = "none";
   document.getElementById('roundEndParty').style.display = "none";
-  document.getElementById("flag").style.display = "none";
-  document.getElementById("pflag").style.display = "none";
+  document.getElementById("gameStartSurvival").style.display = "none";
+  document.getElementById("gameStartParty").style.display="none";
   document.getElementById("endSplashButton").style.display="none";
   document.getElementById("gameStart").style.display="none";
-  document.getElementById("gameStartParty").style.display="none";
   document.getElementById('endSplashLose').className = "endSplash lose";
   document.getElementById('endSplash').className = "endSplash";
   document.getElementById('flag').className = "gameImg";
@@ -779,10 +939,10 @@ function resetGame() {
   document.getElementById('p2').innerHTML =  ""; 
   document.getElementById('p3').innerHTML =  "";  
   document.getElementById('p4').innerHTML =  ""; 
-  document.getElementById("p1").disabled = true;
-  document.getElementById("p2").disabled = true;
-  document.getElementById("p3").disabled = true;
-  document.getElementById("p4").disabled = true; 
+  document.getElementById('s1').innerHTML =  "";  
+  document.getElementById('s2').innerHTML =  ""; 
+  document.getElementById('s3').innerHTML =  "";  
+  document.getElementById('s4').innerHTML =  ""; 
   document.getElementById("ps1").className = "noanswer";
   document.getElementById("ps2").className = "noanswer";
   document.getElementById("ps3").className = "noanswer";
@@ -794,16 +954,27 @@ function resetGame() {
   document.getElementById("ps9").className = "noanswer";
   document.getElementById("ps10").className = "noanswer";
   document.getElementById("pScore").style.display="none";
+  document.getElementById("currentSurvivalScore").innerHTML = "";
   document.getElementById("countdown").innerHTML = "3";
   document.getElementById("toggleMute").style.display = "none";
+  document.getElementById("duelBack").style.display = "block";
+  document.getElementById("soloMode").style.display = "none";
+  document.getElementById("flag").style.display = "none";
+  document.getElementById("pflag").style.display = "none";
+  document.getElementById("sflag").style.display = "none";
+  document.getElementById("fireworks").style.display="none";
+  document.getElementById("toggleMute").style.display = "none";
+  document.getElementById("endSplashButtonParty").style.display="none";
+  partyRound=1;
   joinScreen();
   disablep1();
   disablep2();
+  disableParty();
   count = 2;
   flags=allFlags;
   document.getElementById('winText').innerHTML =  "You win."; 
   document.getElementById('loseText').innerHTML =  "You lost.";
   partyScore=0;
   partyRound=0;
-  document.getElementById("pBruce").innerHTML = "";
+  survivalScore=0;
 };
