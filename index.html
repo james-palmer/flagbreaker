@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="the ultimate decision maker">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Flagbreaker</title>
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
@@ -79,30 +79,30 @@ Welcome splash screen
     </div>
    </div>   
   </section> 
-  <a onclick="resetGame()" id="backButton" class="btn backButton" style="display: none;"><i class="fa fa-arrow-left"></i> Back</a>
   <a onclick="toggleMute()" id="toggleMute" class = "btn muteButton" style="display: none;"> <i id="muteIcon" class="fa fa-bell"></i></a>
 <!--*****************************  Join game screen **************************-->
-  <section id="joinScreen" style="display:none">
-   <br>
-    <div class="container" style="padding: 10px;">
-     <h4>
-       Welcome to Flagbreaker</h4>
-    <p>
-        Flagbreaker is the ultimate decision making tool, where knowledge of country flags gives you the edge.
-     </p>
-     <div id="mode" style="display:block"> 
-      <p>
-      Pick a Flagbreaker mode:</p>
+  <section id="joinScreen" class="" style="display:none">
+    <div>
+      <p id="flagbreaker" class="flag logo"></p>
+    </div>
+    <div class="container vertical-center full-width d-grid" style="padding: 10px;">
+      <div id="mode" style="display:block"> 
+          <div class="d-grid">
+            <button onclick="joinGameDuel()" class="splashButtons">Duel</button>
+          </div>
+          <div class="d-grid">
+            <button style="display: block;" onclick="joinGameSolo()" class="splashButtons">Solo</button>
+          </div>
+      </div>
+      <div id="soloMode" style="display:none"> 
         <div class="d-grid">
-          <button onclick="joinGameDuel()" class="splashButtons">Duel</button>
+          <button onclick="joinGameParty()" class="splashButtons">Best of 10</button>
         </div>
         <div class="d-grid">
-          <button style="display: block;" onclick="joinGameParty()" class="splashButtons">Solo</button>
+          <button style="display: block;" onclick="joinGameSurvival()" class="splashButtons">Survival</button>
         </div>
     </div>
       <div id="difficulty" style="display: none";> 
-        <p>
-        Pick a difficulty:</p>
           <div class="d-grid">
             <button onclick="joinGameEasy()" class="splashButtons">Easy</button>
           </div>
@@ -116,20 +116,18 @@ Welcome splash screen
             <button  onclick="joinGameFun()" class="splashButtons">Fun</button>
           </div>
       </div>
- 
-    <div id="fun" style="display: none;"> 
-      <p>
-      Pick between one of the fun modes:</p>
-        <div class="d-grid">
-          <button  onclick="joinGameCryptic()" class="splashButtons">Cryptic</button>
-        </div>
-        <div class="d-grid">
-          <button  onclick="joinGameUSA()" class="splashButtons">USA</button>
-        </div>
-        <!-- <div class="d-grid">
-          <button onclick="joinGameBruce()" class="splashButtons">Bruce</button>
-        </div> -->
-    </div>
+      <div id="fun" style="display: none;"> 
+          <div class="d-grid">
+            <button  onclick="joinGameCryptic()" class="splashButtons">Cryptic</button>
+          </div>
+          <div class="d-grid">
+            <button  onclick="joinGameUSA()" class="splashButtons">USA</button>
+          </div>
+          <!-- <div class="d-grid">
+            <button onclick="joinGameBruce()" class="splashButtons">Bruce</button>
+          </div> -->
+      </div>
+      <button onclick="resetGame()" id="backButton" class="btn backButton" style="display: none;"><i class="fa fa-arrow-left"></i></button>
     </div>
   </section>
   
@@ -139,7 +137,7 @@ Welcome splash screen
 <!-- game page -->
 <section id="gameStart" class="no-padding" style="display:none">
     <div class="row" >
-        <div class="col-6 top upside no-padding">
+        <div class="col-6 top upside left no-padding">
             <button id="1-1" class="gameButtons" disabled></button>
             <button id= "1-2" class="gameButtons" disabled></button>
         </div>
@@ -148,21 +146,22 @@ Welcome splash screen
             <button id="1-4" class="gameButtons" disabled></button>
         </div>
     </div>  
-    <div class="flagholder">
+    <div class="flagholder d-grid">
         <div id="instructions">
-          <a onclick="resetGame()" id="backButton" class="gameBack" style="display: block;"><i class="fa fa-arrow-left"></i> Back</a>    
-            <div class="container">
-                <p>A random flag will be shown here, first person to guess it wins. A wrong guess will lock you out.</p>
-                <p>Position the phone between the two players and press the button to start the timer and begin your Flagbreaker.</p>
-                <button class="splashButtons" id="gameStart" onclick=gameStart() style="margin-top: 0px;">Start Flagbreaker</button>
-                
+            <div class="d-grid">
+              <div style="text-align: center;">
+                <p>A flag will be shown here, first person to guess it wins. A wrong guess will lock you out.</p>
+                <p>Position the phone between the two players and start your Flagbreaker.</p>
+              </div>  
+              <button class="splashButtons" id="gameStart" onclick=gameStart() style="margin-top: 0px;">Start Flagbreaker</button>
             </div>
         </div>
             <span id="countdown" style="display:none">3</span>
             <img id="flag" class="gameImg upside"  style="display:none" src="">
+            <button onclick="resetGame()" id="duelBack" class="btn backButton"><i class="fa fa-arrow-left"></i></button>
     </div>
     <div class="row" >
-        <div class="col-6 bottom no-padding">
+        <div class="col-6 bottom left no-padding">
             <button id="2-3" class="gameButtons" disabled></button>
             <button id= "2-4" class="gameButtons" disabled></button>
         </div>
@@ -192,18 +191,21 @@ Welcome splash screen
           <div class="checkdiv "><div id="ps10" class="noanswer"></div></div>
         </div>
   </div>
-  <div class="flagholder">
+  <div class="flagholder-party d-grid">
       <div id="pinstructions">  
-          <div class="container">
+          <div class="d-grid">
+            <div style="text-align: center"; >
               <p>You will be shown a series of 10 flags.</p>
-              <p>Most flags guessed wins.</p>
+              <p>Guess as many as you can.</p>
             </div>
             <button class="splashButtons" id="pgameStart" onclick=gameStartParty() style="margin-top: 0px;">Start Flagbreaker</button>
+        </div>
       </div>
           <img id="pflag" class="gameImg"  style="display:none" src="">
+          <button onclick="resetGame()" id="soloBack" class="btn backButton"><i class="fa fa-arrow-left"></i></button>
   </div>
   <div class="row" >
-      <div class="col-6 bottom no-padding">
+      <div class="col-6 bottom left no-padding">
           <button id="p1" class="gameButtons" disabled></button>
           <button id="p2" class="gameButtons" disabled></button>
       </div>
@@ -215,6 +217,37 @@ Welcome splash screen
 
 </section>
          
+<section id="gameStartSurvival" style="display:none">
+  <div class="" id="sScore">
+    <span id="currentSurvivalScore"></span>
+  </div>
+  <div class="flagholder-party d-grid">
+      <div id="sinstructions">  
+        <span id="showCurrentHighScore"></span>
+          <div class="d-grid">
+            <div style="text-align: center"; >
+              <p>Guess as many flags correctly as you can</p>
+              <br>
+            </div>
+            <button class="splashButtons" id="sgameStart" onclick=gameStartSurvival() style="margin-top: 0px;">Start Flagbreaker</button>
+        </div>
+      </div>
+          <img id="sflag" class="gameImg"  style="display:none" src="">
+          <button onclick="resetGame()" id="survivalBack" class="btn backButton"><i class="fa fa-arrow-left"></i></button>
+  </div>
+  <div class="row" >
+      <div class="col-6 bottom left no-padding">
+          <button id="s1" class="gameButtons" disabled></button>
+          <button id="s2" class="gameButtons" disabled></button>
+      </div>
+      <div class="col-6 bottom right no-padding">
+          <button id="s3" class="gameButtons" disabled></button>
+          <button id="s4" class="gameButtons" disabled></button>
+      </div>
+  </div>
+
+</section>
+
 <!-- End round splash page -->  
 <section id="roundEnd" style="display:none">
     <div id="confetti"  style="z-index: 100000; display: none; width:100vw; height: 100vh; position: fixed; top: 0; left:0;"></div>
@@ -242,13 +275,13 @@ Welcome splash screen
   <div class="container">
     <div class="row">
       <p id="pendScore" class="showScore">
-        You scored <span id="pwinText"></span>/10
+        You scored <span id="pwinText"></span>
           <br>
-        <span id="partyText">Well done</span></p>
+        <span id="partyText"></span></p>
         </div>
       </div>
        <button id="endSplashButtonParty" style="display: none" onclick=resetGame() class="endsplashButton splashButtons vertical-center">Play again</button>
-       <p id="pBruce" class="showBruce"></p>
+       <!-- <p id="pBruce" class="showBruce"></p> -->
       </div>
 </section>
      
@@ -259,6 +292,5 @@ Welcome splash screen
      
 </main>
 </body>
-<script src="cordova.js"></script>
 <script src="public/main.js"></script>
 </html>
