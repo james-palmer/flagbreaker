@@ -591,3 +591,12 @@ flex-wrap: wrap;
 width:100%;
 justify-content: center;
 }
+
+#currentSurvivalScore {
+	font-size: 6rem;
+	font-weight: 700;
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	background-image: url(flag_background.png);
+}
