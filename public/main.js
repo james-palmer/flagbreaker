@@ -965,6 +965,7 @@ function resetGame() {
   document.getElementById("fireworks").style.display="none";
   document.getElementById("toggleMute").style.display = "none";
   document.getElementById("endSplashButtonParty").style.display="none";
+  document.getElementById("survivalBack").style.display = "block";
   partyRound=1;
   joinScreen();
   disablep1();
