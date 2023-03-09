@@ -977,4 +977,6 @@ function resetGame() {
   partyScore=0;
   partyRound=0;
   survivalScore=0;
+  difficulty = "";
+  mode = "";
 };
