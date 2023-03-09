@@ -248,15 +248,22 @@ var mode;
 var difficulty;
 
 hard1 = [iraq, egypt, yemen, syrianarabrepublic];
-hard2 = [monaco, indonesia,poland,austria, latvia]
-hard3 = [vietnam, isleofman, china, kyrgyzstan];
+hard2 = [monaco, indonesia,poland,austria ]
+hard3 = [vietnam, isleofman, tunisia, turkey, kyrgyzstan];
 hard4 = [hungary, netherlands, luxembourg, paraguay];
 hard5 = [romania, chad, andorra, moldova];
 hard6 = [hongkong, tunisia, vietnam, isleofman];
-hard7 = [syrianarabrepublic, sudan, egypt,libya];
+hard7 = [syrianarabrepublic,libya, unitedarabemirates, westernsahara];
 hard8 = [nicaragua, honduras, elsalvador, sierraleone];
 hard9 = [venezuela, ecuador,colombia, bolivia];
 hard10 = [cotedivoire, ireland, niger, india ]
+hard11 = [senegal,saotomeandprincipe, guineabissau,benin,];
+hard12 = [palestine,jordan,sudan,kuwait];
+hard13 = [mali, guinea, cameroon, bolivia];
+hard14 = [slovakia, slovenia, serbia, russianfederation];
+hard15 = [curaca,nauru,capeverde,marshallislands];
+hard16 = [tuvalu, cookislands, niue,fiji];
+
 
 var passSound = document.getElementById('passSound');
 var correctSound = document.getElementById('correctSound');
@@ -274,24 +281,6 @@ function toggleMute() {
     document.getElementById('muteIcon').className = "fa fa-bell";
   }
 }
-
-// hard13 = [china, vietnam, isleofman, morocco];
-// hard15 = [honduras, nicaragua, elsalvador, sierraleone];
-// hard16 = [hungary, netherlands, yemen, egypt];
-// hard17 = [hongkong, tunisia, vietnam, isleofman];
-// hard18 = [netherlands, paraguay, hungary, croatia];
-// hard19 = [italy, mexico, ireland, saintmartin];
-// hard20 = [morocco, china, isleofman, vietnam];
-// hard21 = [paraguay, netherlands, croatia, luxembourg];
-// hard22 = [elsalvador, nicaragua, honduras, sierraleone];
-// hard24 = [russianfederation, bulgaria, slovenia, slovakia];
-// hard25 = [kyrgyzstan, vietnam, china, hongkong];
-// hard26 = [palestine, westernsahara, jordan, unitedarabemirates];
-// hard27 = [finland, unitedkingdom, georgia, guernsey];
-// hard29 = [mexico, italy, saintmartin, france];
-// hard30 = [senegal, mali, romania, chad];
-// hard32 = [ireland, italy, mexico, france];
-// hard35 = [bulgaria, russianfederation, slovakia, slovenia];
 
 /* Flag waving animation */
   var h = $('.flag').width();
@@ -318,7 +307,7 @@ unitedkingdom, unitedstates,australia,france,germany,brazil,argentina,canada, sp
 ];
 
 let hardFlags = [
-  hard1, hard2,hard3,hard4,hard5,hard6,hard7,hard8,hard9,hard10
+  hard1, hard2,hard3,hard4,hard5,hard6,hard7,hard8,hard9,hard10,hard11,hard12,hard13,hard14,hard15,hard16
 ]
 
 let usaFlags = [
