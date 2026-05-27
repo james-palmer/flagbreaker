@@ -1,3 +1,14 @@
+function registerServiceWorker() {
+  if (!("serviceWorker" in navigator)) {
+    return;
+  }
+
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js").catch(function () {
+      console.log("Service worker failed to register");
+    });
+  });
+}
 
 //
 var andorra = {name: 'Andorra', flag: 'flag_images/ad.png'};
@@ -276,23 +287,24 @@ function toggleMute() {
   correctSound.muted = !correctSound.muted;
   mute = !mute;
   if (mute == true) {
-    document.getElementById('muteIcon').className = "fa fa-bell-slash";
+    document.getElementById('muteIcon').textContent = "Muted";
   } else {
-    document.getElementById('muteIcon').className = "fa fa-bell";
+    document.getElementById('muteIcon').textContent = "Bell";
   }
 }
 
 /* Flag waving animation */
-  var h = $('.flag').width();
-  for(var i = 0; i < h; i++){
-      var flagElement = $("<div class='flag-element'>");
-      flagElement.css('background-position', -i + "px 0");
-      flagElement.css('-webkit-animation-delay', i * 10 + 'ms');
-      flagElement.css('-moz-animation-delay', i * 10 + 'ms');
-      flagElement.css('-ms-animation-delay', i * 10 + 'ms');
-      flagElement.css('animation-delay', i * 10 + 'ms');
-      $('.flag').append(flagElement);
-}
+  var flagContainer = document.querySelector(".flag");
+  if (flagContainer) {
+    var h = Math.round(flagContainer.getBoundingClientRect().width);
+    for (var i = 0; i < h; i++) {
+      var flagElement = document.createElement("div");
+      flagElement.className = "flag-element";
+      flagElement.style.backgroundPosition = -i + "px 0";
+      flagElement.style.animationDelay = i * 10 + "ms";
+      flagContainer.appendChild(flagElement);
+    }
+  }
 
 document.getElementById('join-button').onclick = function()  {joinScreen();};   
 
@@ -417,7 +429,7 @@ function  joinGame() {
     document.getElementById("sinstructions").style.display = "block";
     document.getElementById("toggleMute").style.display = "block";
     if (survivalHighScore > 0){
-      document.getElementById("showCurrentHighScore").innerHTML = "High score: "+survivalHighScore
+      document.getElementById("showCurrentHighScore").textContent = "High score: " + survivalHighScore;
     }
   }
   shuffle(flags);
@@ -464,14 +476,14 @@ function  startGameRegular(){
   flag2 = flags[1];
   flag3 = flags[2];
   flag4 = flags[3];
-  document.getElementById('1-1').innerHTML =  flag1.name;  
-  document.getElementById('2-1').innerHTML =  flag1.name; 
-  document.getElementById('1-2').innerHTML =  flag2.name;  
-  document.getElementById('2-2').innerHTML =  flag2.name; 
-  document.getElementById('1-3').innerHTML =  flag3.name;  
-  document.getElementById('2-3').innerHTML =  flag3.name; 
-  document.getElementById('1-4').innerHTML =  flag4.name;  
-  document.getElementById('2-4').innerHTML =  flag4.name;  
+  document.getElementById('1-1').textContent =  flag1.name;  
+  document.getElementById('2-1').textContent =  flag1.name; 
+  document.getElementById('1-2').textContent =  flag2.name;  
+  document.getElementById('2-2').textContent =  flag2.name; 
+  document.getElementById('1-3').textContent =  flag3.name;  
+  document.getElementById('2-3').textContent =  flag3.name; 
+  document.getElementById('1-4').textContent =  flag4.name;  
+  document.getElementById('2-4').textContent =  flag4.name;  
   document.getElementById("flag").src=  flags[answer].flag;
   document.getElementById("flag").style.display = "block";
   document.getElementById("countdown").style.display = "none";
@@ -490,7 +502,7 @@ function gameStart()  {
       enablep2();
       return;
     } else {
-      $('#countdown').html(count);
+      document.getElementById("countdown").textContent = count;
       count--;
     }
   }, 1000);
@@ -505,10 +517,10 @@ function gameStartParty(){
   flag2 = flags[1];
   flag3 = flags[2];
   flag4 = flags[3];
-  document.getElementById('p1').innerHTML =  flag1.name; 
-  document.getElementById('p2').innerHTML =  flag2.name; 
-  document.getElementById('p3').innerHTML =  flag3.name; 
-  document.getElementById('p4').innerHTML =  flag4.name;  
+  document.getElementById('p1').textContent =  flag1.name; 
+  document.getElementById('p2').textContent =  flag2.name; 
+  document.getElementById('p3').textContent =  flag3.name; 
+  document.getElementById('p4').textContent =  flag4.name;  
   document.getElementById("pflag").src=  flags[answer].flag;
   document.getElementById("pflag").style.display = "block";
   document.getElementById("p1").disabled = false;
@@ -528,10 +540,10 @@ function gameStartSurvival(){
   flag2 = flags[1];
   flag3 = flags[2];
   flag4 = flags[3];
-  document.getElementById('s1').innerHTML =  flag1.name; 
-  document.getElementById('s2').innerHTML =  flag2.name; 
-  document.getElementById('s3').innerHTML =  flag3.name; 
-  document.getElementById('s4').innerHTML =  flag4.name;  
+  document.getElementById('s1').textContent =  flag1.name; 
+  document.getElementById('s2').textContent =  flag2.name; 
+  document.getElementById('s3').textContent =  flag3.name; 
+  document.getElementById('s4').textContent =  flag4.name;  
   document.getElementById("s1").disabled = false;
   document.getElementById("s2").disabled = false;
   document.getElementById("s3").disabled = false;
@@ -562,7 +574,7 @@ function p1Guessed(guess) {
     document.getElementById('endSplash').style.display="block";
     document.getElementById('endSplashLose').style.display="block";
     document.getElementById('roundEnd').style.display="block";
-    document.getElementById('answer').innerHTML = flags[answer].name;
+    document.getElementById('answer').textContent = flags[answer].name;
      document.getElementById('gameStart').style.display="none";
      if (difficulty === "bruce") {
       bruceEndSplash();
@@ -573,14 +585,8 @@ function p1Guessed(guess) {
       setTimeout(function(){ 
         document.getElementById("confetti").style.display="none";
         document.getElementById("endSplashButton").style.display="block";
-      }, 5000);
+      }, 1500);
       document.getElementById('correctSound').play();
-      var animConfetti = bodymovin.loadAnimation({
-        wrapper: confetti,
-        animType: 'svg',
-        loop: true,
-        path: 'public/confetti.json'
-    });
     }
   }
   else 
@@ -601,7 +607,7 @@ function p2Guessed(guess) {
     document.getElementById('endSplashLose').classList.add("top");
     document.getElementById('endSplashLose').style.display="block";
     document.getElementById('roundEnd').style.display="block";
-    document.getElementById('answer').innerHTML = flags[answer].name;
+    document.getElementById('answer').textContent = flags[answer].name;
     document.getElementById('gameStart').style.display="none";
     if (difficulty === "bruce") {
       bruceEndSplash();
@@ -612,14 +618,8 @@ function p2Guessed(guess) {
       setTimeout(function(){ 
         document.getElementById("confetti").style.display="none";
         document.getElementById("endSplashButton").style.display="block";
-      }, 5000);
+      }, 1500);
       document.getElementById('correctSound').play();
-      var animConfetti = bodymovin.loadAnimation({
-        wrapper: confetti,
-        animType: 'svg',
-        loop: true,
-        path: 'public/confetti.json'
-    });
     }
   }
   else {
@@ -707,13 +707,7 @@ function partyGuessed(guess) {
       document.getElementById("fireworks").style.display="none";
       document.getElementById("endSplashButtonParty").style.display="block";
       document.getElementById("toggleMute").style.display = "none";
-    }, 5000);
-    var animFireworks = bodymovin.loadAnimation({
-      wrapper: fireworks,
-      animType: 'svg',
-      loop: true,
-      path: 'public/fireworks.json'
-    });
+    }, 1500);
   } 
   gameStartParty();
   enableParty();
@@ -780,17 +774,11 @@ function survivalGuessed(guess) {
       setTimeout(function(){ 
         document.getElementById("fireworks").style.display="none";
         document.getElementById("endSplashButtonParty").style.display="block";
-      }, 5000);
-      var animFireworks = bodymovin.loadAnimation({
-        wrapper: fireworks,
-        animType: 'svg',
-        loop: true,
-        path: 'public/fireworks.json'
-      });
+      }, 1500);
     },3000);
   }
   answer = generateAnswer(0, 3);
-  document.getElementById("currentSurvivalScore").innerHTML = survivalScore;
+  document.getElementById("currentSurvivalScore").textContent = survivalScore;
   setTimeout(function(){ 
   gameStartSurvival();
   enableParty();
@@ -803,45 +791,45 @@ function survivalGuessed(guess) {
 
 function showScores(){
   if (mode === "party") {
-    document.getElementById("pwinText").innerHTML = partyScore+"/10";
+    document.getElementById("pwinText").textContent = partyScore+"/10";
     if (difficulty==="bruce"){
-      document.getElementById("pBruce").innerHTML = "It doesn't matter what you scored, Bruce beat you.";
+      document.getElementById("pBruce").textContent = "It doesn't matter what you scored, Bruce beat you.";
     }
     if (partyScore === 0) {
-      document.getElementById("partyText").innerHTML = "Ouch";
+      document.getElementById("partyText").textContent = "Ouch";
     } else 
     if (partyScore < 3) {
-      document.getElementById("partyText").innerHTML = "Try harder";
+      document.getElementById("partyText").textContent = "Try harder";
     } else 
     if (partyScore < 5) {
-      document.getElementById("partyText").innerHTML = "Not bad";
+      document.getElementById("partyText").textContent = "Not bad";
     } else 
     if (partyScore < 7) {
-      document.getElementById("partyText").innerHTML = "Good effort";
+      document.getElementById("partyText").textContent = "Good effort";
     } else 
     if (partyScore < 8) {
-      document.getElementById("partyText").innerHTML = "Well done!";
+      document.getElementById("partyText").textContent = "Well done!";
     } else 
     if (partyScore === 9) {
-      document.getElementById("partyText").innerHTML = "Excellent";
+      document.getElementById("partyText").textContent = "Excellent";
     } else 
     if (partyScore === 10) {
-      document.getElementById("partyText").innerHTML = "Perfect";
+      document.getElementById("partyText").textContent = "Perfect";
     }
   } else
   if (mode === "survival") {
-    document.getElementById("pwinText").innerHTML = survivalScore;
+    document.getElementById("pwinText").textContent = survivalScore;
     if (survivalScore === 0){
-      document.getElementById("partyText").innerHTML = "Ouch";
+      document.getElementById("partyText").textContent = "Ouch";
     } else if (survivalScore > survivalHighScore || survivalHighScore === null) {
-      document.getElementById("partyText").innerHTML = "New high score!";
+      document.getElementById("partyText").textContent = "New high score!";
       localStorage.setItem("highscore", survivalScore);
       survivalHighScore = survivalScore
     } else if (survivalScore == survivalHighScore) {
-      document.getElementById("partyText").innerHTML = "Joint high score"; 
+      document.getElementById("partyText").textContent = "Joint high score"; 
     }
     else {
-      document.getElementById("partyText").innerHTML = "High score: "+survivalHighScore;
+      document.getElementById("partyText").textContent = "High score: " + survivalHighScore;
     }
   }
 }
@@ -898,8 +886,8 @@ function enableParty() {
 };
 
 function bruceEndSplash(){
-  document.getElementById('winText').innerHTML =  "You lost. Bruce makes the decision"; 
-  document.getElementById('loseText').innerHTML =  "You lost. Bruce makes the decision";
+  document.getElementById('winText').textContent =  "You lost. Bruce makes the decision"; 
+  document.getElementById('loseText').textContent =  "You lost. Bruce makes the decision";
   document.getElementById('endSplash').classList.add("lose");
 }
 
@@ -915,22 +903,22 @@ function resetGame() {
   document.getElementById('endSplash').className = "endSplash";
   document.getElementById('flag').className = "gameImg";
   document.getElementById('pflag').className = "gameImg";
-  document.getElementById('1-1').innerHTML =  "";  
-  document.getElementById('2-1').innerHTML =  ""; 
-  document.getElementById('1-2').innerHTML =  "";  
-  document.getElementById('2-2').innerHTML =  ""; 
-  document.getElementById('1-3').innerHTML =  "";  
-  document.getElementById('2-3').innerHTML =  ""; 
-  document.getElementById('1-4').innerHTML =  "";  
-  document.getElementById('2-4').innerHTML =  "";  
-  document.getElementById('p1').innerHTML =  "";  
-  document.getElementById('p2').innerHTML =  ""; 
-  document.getElementById('p3').innerHTML =  "";  
-  document.getElementById('p4').innerHTML =  ""; 
-  document.getElementById('s1').innerHTML =  "";  
-  document.getElementById('s2').innerHTML =  ""; 
-  document.getElementById('s3').innerHTML =  "";  
-  document.getElementById('s4').innerHTML =  ""; 
+  document.getElementById('1-1').textContent =  "";  
+  document.getElementById('2-1').textContent =  ""; 
+  document.getElementById('1-2').textContent =  "";  
+  document.getElementById('2-2').textContent =  ""; 
+  document.getElementById('1-3').textContent =  "";  
+  document.getElementById('2-3').textContent =  ""; 
+  document.getElementById('1-4').textContent =  "";  
+  document.getElementById('2-4').textContent =  "";  
+  document.getElementById('p1').textContent =  "";  
+  document.getElementById('p2').textContent =  ""; 
+  document.getElementById('p3').textContent =  "";  
+  document.getElementById('p4').textContent =  ""; 
+  document.getElementById('s1').textContent =  "";  
+  document.getElementById('s2').textContent =  ""; 
+  document.getElementById('s3').textContent =  "";  
+  document.getElementById('s4').textContent =  ""; 
   document.getElementById("ps1").className = "noanswer";
   document.getElementById("ps2").className = "noanswer";
   document.getElementById("ps3").className = "noanswer";
@@ -942,8 +930,8 @@ function resetGame() {
   document.getElementById("ps9").className = "noanswer";
   document.getElementById("ps10").className = "noanswer";
   document.getElementById("pScore").style.display="none";
-  document.getElementById("currentSurvivalScore").innerHTML = "";
-  document.getElementById("countdown").innerHTML = "3";
+  document.getElementById("currentSurvivalScore").textContent = "";
+  document.getElementById("countdown").textContent = "3";
   document.getElementById("toggleMute").style.display = "none";
   document.getElementById("duelBack").style.display = "block";
   document.getElementById("soloMode").style.display = "none";
@@ -961,11 +949,43 @@ function resetGame() {
   disableParty();
   count = 2;
   flags=allFlags;
-  document.getElementById('winText').innerHTML =  "You win."; 
-  document.getElementById('loseText').innerHTML =  "You lost.";
+  document.getElementById('winText').textContent =  "You win."; 
+  document.getElementById('loseText').textContent =  "You lost.";
   partyScore=0;
   partyRound=0;
   survivalScore=0;
   difficulty = "";
   mode = "";
 };
+
+function bindActionButtons() {
+  var actions = {
+    toggleMute: toggleMute,
+    joinGameDuel: joinGameDuel,
+    joinGameSolo: joinGameSolo,
+    joinGameParty: joinGameParty,
+    joinGameSurvival: joinGameSurvival,
+    joinGameEasy: joinGameEasy,
+    joinGameNormal: joinGameNormal,
+    joinGameHard: joinGameHard,
+    joinGameFun: joinGameFun,
+    joinGameCryptic: joinGameCryptic,
+    joinGameUSA: joinGameUSA,
+    gameStart: gameStart,
+    gameStartParty: gameStartParty,
+    gameStartSurvival: gameStartSurvival,
+    resetGame: resetGame
+  };
+
+  document.querySelectorAll("[data-action]").forEach(function (element) {
+    var actionName = element.getAttribute("data-action");
+    var action = actions[actionName];
+
+    if (action) {
+      element.addEventListener("click", action);
+    }
+  });
+}
+
+bindActionButtons();
+registerServiceWorker();
