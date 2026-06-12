@@ -4,10 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="the ultimate decision maker">
+  <meta name="description" content="Fast, competitive flag trivia for solo players and friends.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Flagbreaker</title>
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
@@ -37,7 +37,7 @@
 <!-- Bootstrap-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-<link rel="stylesheet" href="public/main.css">
+<link rel="stylesheet" href="public/app-v3.css">
 
 </head>
   
@@ -50,64 +50,59 @@
 <!--*****************************    
 Welcome splash screen 
 **************************-->    
-  <section id="page-splash" style="display:block">
-    <div class="container">
-      <button id="join-button" class="splashButtons btn btn-primary flag vertical-center">
-    </button>
+  <section id="page-splash" style="display:grid">
+    <div class="splash-orbit splash-orbit-one" aria-hidden="true"></div>
+    <div class="splash-orbit splash-orbit-two" aria-hidden="true"></div>
+    <div class="landing-card">
+      <div class="eyebrow">The flag trivia showdown</div>
+      <img class="brand-wordmark" src="logo-no-background.png" alt="Flagbreaker">
+      <p class="landing-copy">Spot the flag. Beat the clock. Settle the score.</p>
+      <button id="join-button" class="splashButtons primary-action" type="button">
+        Start playing
+        <span aria-hidden="true">→</span>
+      </button>
+      <div class="landing-meta" aria-label="Game features">
+        <span>2 players</span>
+        <span>Solo modes</span>
+        <span>250+ flags</span>
+      </div>
     </div>
-   </div>   
   </section> 
   <button id="toggleMute" class="btn muteButton iconButton" style="display: none;" type="button" aria-label="Mute or unmute sound">
     <span id="muteIcon" aria-hidden="true">Bell</span>
   </button>
 <!--*****************************  Join game screen **************************-->
   <section id="joinScreen" class="" style="display:none">
-    <div>
-      <p id="flagbreaker" class="flag logo"></p>
+    <div class="menu-shell">
+    <div class="menu-brand">
+      <img src="logo-no-background.png" alt="Flagbreaker">
+      <p>Choose your challenge</p>
     </div>
-    <div class="container vertical-center full-width d-grid" style="padding: 10px;">
+    <div class="menu-panel">
       <div id="mode" style="display:block"> 
-          <div class="d-grid">
-            <button data-action="joinGameDuel" class="splashButtons" type="button">Duel</button>
-          </div>
-          <div class="d-grid">
-            <button style="display: block;" data-action="joinGameSolo" class="splashButtons" type="button">Solo</button>
-          </div>
+          <div class="menu-heading"><span>Step 1</span><h1>How do you want to play?</h1></div>
+          <button data-action="joinGameDuel" class="splashButtons choice-button" type="button"><strong>Duel</strong><small>Face off on one device</small></button>
+          <button data-action="joinGameSolo" class="splashButtons choice-button" type="button"><strong>Solo</strong><small>Test your flag knowledge</small></button>
       </div>
       <div id="soloMode" style="display:none"> 
-        <div class="d-grid">
-          <button data-action="joinGameParty" class="splashButtons" type="button">Best of 10</button>
-        </div>
-        <div class="d-grid">
-          <button style="display: block;" data-action="joinGameSurvival" class="splashButtons" type="button">Survival</button>
-        </div>
+        <div class="menu-heading"><span>Step 2</span><h1>Pick a solo mode</h1></div>
+        <button data-action="joinGameParty" class="splashButtons choice-button" type="button"><strong>Best of 10</strong><small>Ten flags. Chase a perfect score.</small></button>
+        <button data-action="joinGameSurvival" class="splashButtons choice-button" type="button"><strong>Survival</strong><small>One mistake ends the run</small></button>
     </div>
-      <div id="difficulty" style="display: none";> 
-          <div class="d-grid">
-            <button data-action="joinGameEasy" class="splashButtons" type="button">Easy</button>
-          </div>
-          <div class="d-grid">
-            <button data-action="joinGameNormal" class="splashButtons" type="button">Normal</button>
-          </div>
-          <div class="d-grid">
-            <button data-action="joinGameHard" class="splashButtons" type="button">Hard</button>
-          </div>
-          <div class="d-grid">
-            <button data-action="joinGameFun" class="splashButtons" type="button">Fun</button>
-          </div>
+      <div id="difficulty" style="display: none;">
+          <div class="menu-heading"><span>Final step</span><h1>Choose difficulty</h1></div>
+          <button data-action="joinGameEasy" class="splashButtons choice-button" type="button"><strong>Easy</strong><small>Famous flags</small></button>
+          <button data-action="joinGameNormal" class="splashButtons choice-button" type="button"><strong>Normal</strong><small>Flags from everywhere</small></button>
+          <button data-action="joinGameHard" class="splashButtons choice-button" type="button"><strong>Hard</strong><small>Deceptively similar flags</small></button>
+          <button data-action="joinGameFun" class="splashButtons choice-button" type="button"><strong>Wildcard</strong><small>Something different</small></button>
       </div>
       <div id="fun" style="display: none;"> 
-          <div class="d-grid">
-            <button data-action="joinGameCryptic" class="splashButtons" type="button">Cryptic</button>
-          </div>
-          <div class="d-grid">
-            <button data-action="joinGameUSA" class="splashButtons" type="button">USA</button>
-          </div>
-          <!-- <div class="d-grid">
-            <button class="splashButtons" type="button">Bruce</button>
-          </div> -->
+          <div class="menu-heading"><span>Wildcard</span><h1>Pick your twist</h1></div>
+          <button data-action="joinGameCryptic" class="splashButtons choice-button" type="button"><strong>Cryptic</strong><small>Colors inverted</small></button>
+          <button data-action="joinGameUSA" class="splashButtons choice-button" type="button"><strong>USA</strong><small>A very serious challenge</small></button>
       </div>
       <button data-action="resetGame" id="backButton" class="btn backButton iconButton" style="display: none;" type="button" aria-label="Go back">Back</button>
+    </div>
     </div>
   </section>
   
@@ -117,11 +112,11 @@ Welcome splash screen
 <!-- game page -->
 <section id="gameStart" class="no-padding" style="display:none">
     <div class="row" >
-        <div class="col-6 top upside left no-padding">
+        <div class="col-6 top left no-padding">
             <button id="1-1" class="gameButtons" disabled></button>
             <button id= "1-2" class="gameButtons" disabled></button>
         </div>
-        <div class="col-6 top upside right no-padding">
+        <div class="col-6 top right no-padding">
             <button id="1-3" class="gameButtons" disabled></button>
             <button id="1-4" class="gameButtons" disabled></button>
         </div>
@@ -129,11 +124,13 @@ Welcome splash screen
     <div class="flagholder d-grid">
         <div id="instructions">
             <div class="d-grid">
-              <div style="text-align: center;">
+              <div class="instruction-copy">
+                <span class="eyebrow">Head-to-head</span>
+                <h2>First correct answer wins</h2>
                 <p>A flag will be shown here, first person to guess it wins. A wrong guess will lock you out.</p>
                 <p>Position the phone between the two players and start your Flagbreaker.</p>
               </div>  
-              <button class="splashButtons" id="gameStart" data-action="gameStart" style="margin-top: 0px;" type="button">Start Flagbreaker</button>
+              <button class="splashButtons primary-action" id="duelStartButton" data-action="gameStart" type="button">Start duel <span aria-hidden="true">→</span></button>
             </div>
         </div>
             <span id="countdown" style="display:none">3</span>
@@ -174,11 +171,13 @@ Welcome splash screen
   <div class="flagholder-party d-grid">
       <div id="pinstructions">  
           <div class="d-grid">
-            <div style="text-align: center"; >
+            <div class="instruction-copy">
+              <span class="eyebrow">Best of 10</span>
+              <h2>How many can you name?</h2>
               <p>You will be shown a series of 10 flags.</p>
               <p>Guess as many as you can.</p>
             </div>
-            <button class="splashButtons" id="pgameStart" data-action="gameStartParty" style="margin-top: 0px;" type="button">Start Flagbreaker</button>
+            <button class="splashButtons primary-action" id="pgameStart" data-action="gameStartParty" type="button">Start round <span aria-hidden="true">→</span></button>
         </div>
       </div>
           <img id="pflag" class="gameImg"  style="display:none" src="">
@@ -205,11 +204,12 @@ Welcome splash screen
       <div id="sinstructions">  
         <span id="showCurrentHighScore"></span>
           <div class="d-grid">
-            <div style="text-align: center"; >
+            <div class="instruction-copy">
+              <span class="eyebrow">Survival</span>
+              <h2>Keep the streak alive</h2>
               <p>Guess as many flags correctly as you can</p>
-              <br>
             </div>
-            <button class="splashButtons" id="sgameStart" data-action="gameStartSurvival" style="margin-top: 0px;" type="button">Start Flagbreaker</button>
+            <button class="splashButtons primary-action" id="sgameStart" data-action="gameStartSurvival" type="button">Start run <span aria-hidden="true">→</span></button>
         </div>
       </div>
           <img id="sflag" class="gameImg"  style="display:none" src="">
@@ -272,5 +272,5 @@ Welcome splash screen
      
 </main>
 </body>
-<script src="public/main.js"></script>
+<script src="public/main-v3.js"></script>
 </html>

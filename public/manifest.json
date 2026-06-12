@@ -1,10 +1,10 @@
 {
   "short_name": "Flagbreaker",
   "name": "Flagbreaker",
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#090811",
+  "background_color": "#090811",
   "description": "The ultimate decision making tool where a knowledge of flags gives you the edge",
-  "orientation": "portrait",
+  "orientation": "any",
   "icons": [
     {
       "src": "maskable_icon_x192.png",

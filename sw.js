@@ -1,9 +1,9 @@
-const CACHE_VERSION = "flagbreaker-v3";
+const CACHE_VERSION = "flagbreaker-v6";
 const APP_SHELL = [
   "index.html",
   "support.html",
-  "public/main.css",
-  "public/main.js",
+  "public/app-v3.css",
+  "public/main-v3.js",
   "logo-no-background.png",
   "Flagbreakerlogo.png",
   "flag_images/ae.png",

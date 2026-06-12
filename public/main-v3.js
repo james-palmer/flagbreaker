@@ -422,6 +422,7 @@ function  joinGame() {
   } else if (mode==="party"){
     document.getElementById("gameStartParty").style.display = "block"; 
     document.getElementById("pinstructions").style.display = "block";
+    document.getElementById("soloBack").style.display = "block";
     document.getElementById("toggleMute").style.display = "block";
   }
   else if (mode==="survival"){
@@ -492,7 +493,7 @@ function  startGameRegular(){
 function gameStart()  {
   document.getElementById("instructions").style.display = "none";
   document.getElementById("duelBack").style.display = "none";
-  document.getElementById("countdown").style.display = "block";
+  document.getElementById("countdown").style.display = "flex";
   var timer  = setInterval(function() {
     // startGameTimer(count);
     if(count === 0) {
@@ -511,6 +512,7 @@ function gameStart()  {
 function gameStartParty(){
   document.getElementById("toggleMute").style.display = "none";
   document.getElementById("pinstructions").style.display = "none";
+  document.getElementById("soloBack").style.display = "none";
   document.getElementById("pScore").style.display="flex";
   document.getElementById("backButton").style.display = "none";
   flag1 = flags[0];
@@ -903,6 +905,7 @@ function resetGame() {
   document.getElementById('endSplash').className = "endSplash";
   document.getElementById('flag').className = "gameImg";
   document.getElementById('pflag').className = "gameImg";
+  document.getElementById('sflag').className = "gameImg";
   document.getElementById('1-1').textContent =  "";  
   document.getElementById('2-1').textContent =  ""; 
   document.getElementById('1-2').textContent =  "";  
